@@ -2,13 +2,6 @@
 using FoodDeliveryBusinnesLogic.BusinessLogics;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
@@ -73,7 +66,7 @@ namespace FoodDeliveryView
             CalcSum();
         }
 
-        private void ComboBoxProduct_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComboBoxSet_SelectedIndexChanged(object sender, EventArgs e)
         {
             CalcSum();
         }
@@ -87,7 +80,7 @@ namespace FoodDeliveryView
             }
             if (comboBoxSet.SelectedValue == null)
             {
-                MessageBox.Show("Выберите изделие", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Выберите набор", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try

@@ -95,7 +95,7 @@ namespace FoodDeliveryView
             this.comboBoxSet.Name = "comboBoxSet";
             this.comboBoxSet.Size = new System.Drawing.Size(235, 21);
             this.comboBoxSet.TabIndex = 17;
-            this.comboBoxSet.SelectedValueChanged += new System.EventHandler(this.ComboBoxProduct_SelectedIndexChanged);
+            this.comboBoxSet.SelectedValueChanged += new System.EventHandler(this.ComboBoxSet_SelectedIndexChanged);
             // 
             // textBoxCount
             // 
@@ -126,7 +126,7 @@ namespace FoodDeliveryView
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Name = "FormCreateOrder";
-            this.Text = "FormCreateOrder";
+            this.Text = "Заказ";
             this.Load += new System.EventHandler(this.FormCreateOrder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

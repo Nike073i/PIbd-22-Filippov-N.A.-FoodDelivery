@@ -48,8 +48,7 @@ namespace FoodDeliveryListImplement.Implements
             }
             foreach (var set in source.Sets)
             {
-                if (set.Id == model.Id || set.SetName ==
-                model.SetName)
+                if (set.Id == model.Id || set.SetName == model.SetName)
                 {
                     return CreateModel(set);
                 }
@@ -61,8 +60,7 @@ namespace FoodDeliveryListImplement.Implements
             Set tempSet = new Set
             {
                 Id = 1,
-                SetDishes = new
-            Dictionary<int, int>()
+                SetDishes = new Dictionary<int, int>()
             };
             foreach (var set in source.Sets)
             {

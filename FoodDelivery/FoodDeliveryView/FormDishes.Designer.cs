@@ -43,6 +43,7 @@ namespace FoodDeliveryView
             this.dataGridViewDishes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewDishes.Location = new System.Drawing.Point(2, 2);
             this.dataGridViewDishes.Name = "dataGridViewDishes";
+            this.dataGridViewDishes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDishes.Size = new System.Drawing.Size(460, 447);
             this.dataGridViewDishes.TabIndex = 0;
             // 

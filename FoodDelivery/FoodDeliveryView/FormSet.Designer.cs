@@ -112,6 +112,7 @@ namespace FoodDeliveryView
             this.ColumnCount});
             this.dataGridViewDishes.Location = new System.Drawing.Point(9, 17);
             this.dataGridViewDishes.Name = "dataGridViewDishes";
+            this.dataGridViewDishes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewDishes.Size = new System.Drawing.Size(480, 304);
             this.dataGridViewDishes.TabIndex = 0;
             // 

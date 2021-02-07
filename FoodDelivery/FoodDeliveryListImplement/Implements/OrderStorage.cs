@@ -17,9 +17,9 @@ namespace FoodDeliveryListImplement.Implements
         public List<OrderViewModel> GetFullList()
         {
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var component in source.Orders)
+            foreach (var dish in source.Orders)
             {
-                result.Add(CreateModel(component));
+                result.Add(CreateModel(dish));
             }
             return result;
         }
@@ -31,11 +31,11 @@ namespace FoodDeliveryListImplement.Implements
                 return null;
             }
             List<OrderViewModel> result = new List<OrderViewModel>();
-            foreach (var component in source.Orders)
+            foreach (var dish in source.Orders)
             {
-                if (component.SetId.ToString().Contains(model.SetId.ToString()))
+                if (dish.SetId.ToString().Contains(model.SetId.ToString()))
                 {
-                    result.Add(CreateModel(component));
+                    result.Add(CreateModel(dish));
                 }
             }
             return result;
@@ -46,43 +46,43 @@ namespace FoodDeliveryListImplement.Implements
             {
                 return null;
             }
-            foreach (var component in source.Orders)
+            foreach (var dish in source.Orders)
             {
-                if (component.Id == model.Id || component.SetId ==
+                if (dish.Id == model.Id || dish.SetId ==
                model.SetId)
                 {
-                    return CreateModel(component);
+                    return CreateModel(dish);
                 }
             }
             return null;
         }
         public void Insert(OrderBindingModel model)
         {
-            Order tempComponent = new Order { Id = 1 };
-            foreach (var component in source.Orders)
+            Order tempDish = new Order { Id = 1 };
+            foreach (var dish in source.Orders)
             {
-                if (component.Id >= tempComponent.Id)
+                if (dish.Id >= tempDish.Id)
                 {
-                    tempComponent.Id = component.Id + 1;
+                    tempDish.Id = dish.Id + 1;
                 }
             }
-            source.Orders.Add(CreateModel(model, tempComponent));
+            source.Orders.Add(CreateModel(model, tempDish));
         }
         public void Update(OrderBindingModel model)
         {
-            Order tempComponent = null;
-            foreach (var component in source.Orders)
+            Order tempDish = null;
+            foreach (var dish in source.Orders)
             {
-                if (component.Id == model.Id)
+                if (dish.Id == model.Id)
                 {
-                    tempComponent = component;
+                    tempDish = dish;
                 }
             }
-            if (tempComponent == null)
+            if (tempDish == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            CreateModel(model, tempComponent);
+            CreateModel(model, tempDish);
         }
         public void Delete(OrderBindingModel model)
         {

@@ -17,9 +17,9 @@ namespace FoodDeliveryListImplement.Implements
         public List<DishViewModel> GetFullList()
         {
             List<DishViewModel> result = new List<DishViewModel>();
-            foreach (var component in source.Dishes)
+            foreach (var dish in source.Dishes)
             {
-                result.Add(CreateModel(component));
+                result.Add(CreateModel(dish));
             }
             return result;
         }
@@ -31,11 +31,11 @@ namespace FoodDeliveryListImplement.Implements
                 return null;
             }
             List<DishViewModel> result = new List<DishViewModel>();
-            foreach (var component in source.Dishes)
+            foreach (var dish in source.Dishes)
             {
-                if (component.DishName.Contains(model.DishName))
+                if (dish.DishName.Contains(model.DishName))
                 {
-                    result.Add(CreateModel(component));
+                    result.Add(CreateModel(dish));
                 }
             }
             return result;
@@ -46,43 +46,43 @@ namespace FoodDeliveryListImplement.Implements
             {
                 return null;
             }
-            foreach (var component in source.Dishes)
+            foreach (var dish in source.Dishes)
             {
-                if (component.Id == model.Id || component.DishName ==
+                if (dish.Id == model.Id || dish.DishName ==
                model.DishName)
                 {
-                    return CreateModel(component);
+                    return CreateModel(dish);
                 }
             }
             return null;
         }
         public void Insert(DishBindingModel model)
         {
-            Dish tempComponent = new Dish { Id = 1 };
-            foreach (var component in source.Dishes)
+            Dish tempDish = new Dish { Id = 1 };
+            foreach (var dish in source.Dishes)
             {
-                if (component.Id >= tempComponent.Id)
+                if (dish.Id >= tempDish.Id)
                 {
-                    tempComponent.Id = component.Id + 1;
+                    tempDish.Id = dish.Id + 1;
                 }
             }
-            source.Dishes.Add(CreateModel(model, tempComponent));
+            source.Dishes.Add(CreateModel(model, tempDish));
         }
         public void Update(DishBindingModel model)
         {
-            Dish tempComponent = null;
-            foreach (var component in source.Dishes)
+            Dish tempDish = null;
+            foreach (var dish in source.Dishes)
             {
-                if (component.Id == model.Id)
+                if (dish.Id == model.Id)
                 {
-                    tempComponent = component;
+                    tempDish = dish;
                 }
             }
-            if (tempComponent == null)
+            if (tempDish == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            CreateModel(model, tempComponent);
+            CreateModel(model, tempDish);
         }
         public void Delete(DishBindingModel model)
         {
@@ -96,17 +96,17 @@ namespace FoodDeliveryListImplement.Implements
             }
             throw new Exception("Элемент не найден");
         }
-        private Dish CreateModel(DishBindingModel model, Dish component)
+        private Dish CreateModel(DishBindingModel model, Dish dish)
         {
-            component.DishName = model.DishName;
-            return component;
+            dish.DishName = model.DishName;
+            return dish;
         }
-        private DishViewModel CreateModel(Dish component)
+        private DishViewModel CreateModel(Dish dish)
         {
             return new DishViewModel
             {
-                Id = component.Id,
-                DishName = component.DishName
+                Id = dish.Id,
+                DishName = dish.DishName
             };
         }
     }
