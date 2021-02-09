@@ -18,9 +18,9 @@ namespace FoodDeliveryListImplement.Implements
         public List<SetViewModel> GetFullList()
         {
             List<SetViewModel> result = new List<SetViewModel>();
-            foreach (var dish in source.Sets)
+            foreach (var set in source.Sets)
             {
-                result.Add(CreateModel(dish));
+                result.Add(CreateModel(set));
             }
             return result;
         }
@@ -89,7 +89,7 @@ namespace FoodDeliveryListImplement.Implements
         }
         public void Delete(SetBindingModel model)
         {
-            for (int i = 0; i < source.Sets.Count; ++i)
+            for (int i = 0; i < source.Sets.Count; i++)
             {
                 if (source.Sets[i].Id == model.Id)
                 {
@@ -131,18 +131,18 @@ namespace FoodDeliveryListImplement.Implements
         {
             // требуется дополнительно получить список компонентов для изделия с названиями и их количество
             Dictionary<int, (string, int)> setDishes = new Dictionary<int, (string, int)>();
-            foreach (var pc in set.SetDishes)
+            foreach (var sd in set.SetDishes)
             {
                 string dishName = string.Empty;
                 foreach (var dish in source.Dishes)
                 {
-                    if (pc.Key == dish.Id)
+                    if (sd.Key == dish.Id)
                     {
                         dishName = dish.DishName;
                         break;
                     }
                 }
-                setDishes.Add(pc.Key, (dishName, pc.Value));
+                setDishes.Add(sd.Key, (dishName, sd.Value));
             }
             return new SetViewModel
             {

@@ -67,8 +67,7 @@ namespace FoodDeliveryView
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    int id =
-                   Convert.ToInt32(dataGridViewDishes.SelectedRows[0].Cells[0].Value);
+                    int id = Convert.ToInt32(dataGridViewDishes.SelectedRows[0].Cells[0].Value);
                     try
                     {
                         logic.Delete(new DishBindingModel { Id = id });
