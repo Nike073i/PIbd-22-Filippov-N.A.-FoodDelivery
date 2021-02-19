@@ -1,8 +1,8 @@
 ﻿using FoodDeliveryBusinnesLogic.BindingModels;
 using FoodDeliveryBusinnesLogic.Interfaces;
+using FoodDeliveryBusinnesLogic.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FoodDeliveryBusinnesLogic.BusinessLogics
 {
@@ -10,10 +10,56 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
     {
         private readonly IStoreStorage _storeStorage;
         private readonly IDishStorage _dishStorage;
-        public StoreLogic (IStoreStorage storeStorage,IDishStorage dishStorage)
+        public StoreLogic(IStoreStorage storeStorage, IDishStorage dishStorage)
         {
             _storeStorage = storeStorage;
             _dishStorage = dishStorage;
+        }
+
+        public List<StoreViewModel> Read(StoreBindingModel model)
+        {
+            if (model == null)
+            {
+                return _storeStorage.GetFullList();
+            }
+            if (model.Id.HasValue)
+            {
+                return new List<StoreViewModel> { _storeStorage.GetElement(model) };
+            }
+            return _storeStorage.GetFilteredList(model);
+        }
+
+        public void CreateOrUpdate(StoreBindingModel model)
+        {
+            var store = _storeStorage.GetElement(new StoreBindingModel
+            {
+                StoreName = model.StoreName
+            });
+            if (store != null && store.Id != model.Id)
+            {
+                throw new Exception("Уже есть склад с таким названием");
+            }
+            if (model.Id.HasValue)
+            {
+                _storeStorage.Update(model);
+            }
+            else
+            {
+                _storeStorage.Insert(model);
+            }
+        }
+
+        public void Delete(StoreBindingModel model)
+        {
+            var store = _storeStorage.GetElement(new StoreBindingModel
+            {
+                Id = model.Id
+            });
+            if (store == null)
+            {
+                throw new Exception("Склад не найден");
+            }
+            _storeStorage.Delete(model);
         }
 
         public void AddDishes(AddDishesToStoreBindingModel model)
@@ -22,7 +68,6 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             {
                 Id = model.StoreId
             });
-
             if (store == null)
             {
                 throw new Exception("Склад не найден");
@@ -32,7 +77,6 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             {
                 Id = model.DishId
             });
-
             if (dish == null)
             {
                 throw new Exception("Блюдо не найдено");
@@ -47,6 +91,14 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             {
                 storeDishes.Add(dish.Id, (dish.DishName, model.Count));
             }
+            _storeStorage.Update(new StoreBindingModel
+            {
+                Id = store.Id,
+                StoreName = store.StoreName,
+                FullNameResponsible = store.FullNameResponsible,
+                CreationDate = store.CreationDate,
+                StoreDishes = storeDishes
+            });
         }
     }
 }
