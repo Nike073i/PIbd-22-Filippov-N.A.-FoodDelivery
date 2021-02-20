@@ -10,6 +10,6 @@ namespace FoodDeliveryListImplement.Models
         public string StoreName { get; set; }
         public string FullNameResponsible { get; set; }
         public DateTime CreationDate { get; set; }
-        public Dictionary<int, (string, int)> StoreDishes { get; set; }
+        public Dictionary<int, int> StoreDishes { get; set; }
     }
 }
