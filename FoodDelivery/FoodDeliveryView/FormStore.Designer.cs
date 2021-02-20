@@ -36,6 +36,9 @@ namespace FoodDeliveryView
             this.dataGridViewDishes = new System.Windows.Forms.DataGridView();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDishName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDishes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,6 +78,10 @@ namespace FoodDeliveryView
             // 
             this.dataGridViewDishes.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewDishes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewDishes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnId,
+            this.ColumnDishName,
+            this.ColumnCount});
             this.dataGridViewDishes.Location = new System.Drawing.Point(15, 80);
             this.dataGridViewDishes.Name = "dataGridViewDishes";
             this.dataGridViewDishes.Size = new System.Drawing.Size(342, 190);
@@ -89,6 +96,7 @@ namespace FoodDeliveryView
             this.buttonCancel.TabIndex = 6;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // buttonSave
             // 
@@ -99,6 +107,26 @@ namespace FoodDeliveryView
             this.buttonSave.TabIndex = 5;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
+            // 
+            // ColumnId
+            // 
+            this.ColumnId.HeaderText = "Id";
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.Visible = false;
+            // 
+            // ColumnDishName
+            // 
+            this.ColumnDishName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnDishName.FillWeight = 80F;
+            this.ColumnDishName.HeaderText = "Название блюда";
+            this.ColumnDishName.Name = "ColumnDishName";
+            // 
+            // ColumnCount
+            // 
+            this.ColumnCount.FillWeight = 20F;
+            this.ColumnCount.HeaderText = "Количество";
+            this.ColumnCount.Name = "ColumnCount";
             // 
             // FormStore
             // 
@@ -114,6 +142,7 @@ namespace FoodDeliveryView
             this.Controls.Add(this.labelFullName);
             this.Name = "FormStore";
             this.Text = "Склад";
+            this.Load += new System.EventHandler(this.FormStore_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDishes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -129,5 +158,8 @@ namespace FoodDeliveryView
         private System.Windows.Forms.DataGridView dataGridViewDishes;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDishName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
     }
 }

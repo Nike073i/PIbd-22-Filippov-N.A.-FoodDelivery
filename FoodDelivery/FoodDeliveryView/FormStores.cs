@@ -55,7 +55,7 @@ namespace FoodDeliveryView
         {
             if (dataGridViewStores.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormSet>();
+                var form = Container.Resolve<FormStore>();
                 form.Id = Convert.ToInt32(dataGridViewStores.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {

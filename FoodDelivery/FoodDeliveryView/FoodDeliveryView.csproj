@@ -103,6 +103,12 @@
     <Compile Include="FormStore.Designer.cs">
       <DependentUpon>FormStore.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormStoreReplenishment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormStoreReplenishment.Designer.cs">
+      <DependentUpon>FormStoreReplenishment.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormStore.resx">
       <DependentUpon>FormStore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormStoreReplenishment.resx">
+      <DependentUpon>FormStoreReplenishment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStores.resx">
       <DependentUpon>FormStores.cs</DependentUpon>
