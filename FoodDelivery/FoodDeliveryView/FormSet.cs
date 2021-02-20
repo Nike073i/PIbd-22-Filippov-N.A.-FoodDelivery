@@ -3,12 +3,6 @@ using FoodDeliveryBusinnesLogic.BusinessLogics;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Unity;
 
@@ -64,9 +58,9 @@ namespace FoodDeliveryView
                 if (setDishes != null)
                 {
                     dataGridViewDishes.Rows.Clear();
-                    foreach (var pc in setDishes)
+                    foreach (var sd in setDishes)
                     {
-                        dataGridViewDishes.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2 });
+                        dataGridViewDishes.Rows.Add(new object[] { sd.Key, sd.Value.Item1, sd.Value.Item2 });
                     }
                 }
             }
