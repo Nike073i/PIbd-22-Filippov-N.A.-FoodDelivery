@@ -148,9 +148,9 @@
       <Project>{5df499c9-ed7a-4149-a5dd-51ac50a81a43}</Project>
       <Name>FoodDeliveryBusinnesLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FoodDeliveryListImplement\FoodDeliveryListImplement.csproj">
-      <Project>{09c1a7dd-bb47-40a1-9da3-d8442cd33e67}</Project>
-      <Name>FoodDeliveryListImplement</Name>
+    <ProjectReference Include="..\FoodDeliveryFileImplement\FoodDeliveryFileImplement.csproj">
+      <Project>{d813ac3c-0a70-43a5-9243-e81d67e5a8eb}</Project>
+      <Name>FoodDeliveryFileImplement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
