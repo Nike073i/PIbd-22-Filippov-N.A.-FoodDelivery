@@ -80,7 +80,7 @@ namespace FoodDeliveryListImplement.Implements
             }
             if (tempDish == null)
             {
-                throw new Exception("Набор не найден");
+                throw new Exception("Блюдо не найдено");
             }
             CreateModel(model, tempDish);
         }
@@ -94,7 +94,7 @@ namespace FoodDeliveryListImplement.Implements
                     return;
                 }
             }
-            throw new Exception("Набор не найден");
+            throw new Exception("Блюдо не найдено");
         }
         private Dish CreateModel(DishBindingModel model, Dish dish)
         {
