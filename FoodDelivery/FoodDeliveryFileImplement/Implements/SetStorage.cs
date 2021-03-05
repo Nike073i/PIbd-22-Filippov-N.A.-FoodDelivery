@@ -99,8 +99,8 @@ namespace FoodDeliveryFileImplement.Implements
                 Id = set.Id,
                 SetName = set.SetName,
                 Price = set.Price,
-                SetDishes = set.SetDishes.ToDictionary(recSD => recSD.Key, resSD =>
-                (source.Dishes.FirstOrDefault(recC => recC.Id == resSD.Key)?.DishName, resSD.Value))
+                SetDishes = set.SetDishes.ToDictionary(recSD => recSD.Key, recSD =>
+                (source.Dishes.FirstOrDefault(recC => recC.Id == recSD.Key)?.DishName, recSD.Value))
             };
         }
     }

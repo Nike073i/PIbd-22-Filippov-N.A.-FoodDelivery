@@ -10,9 +10,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
     public class OrderLogic
     {
         private readonly IOrderStorage _orderStorage;
-        public OrderLogic(IOrderStorage orderStorage)
+        private readonly IStoreStorage _storeStorage;
+        public OrderLogic(IOrderStorage orderStorage,IStoreStorage storeStorage)
         {
             _orderStorage = orderStorage;
+            _storeStorage = storeStorage;
         }
         public List<OrderViewModel> Read(OrderBindingModel model)
         {
@@ -50,6 +52,10 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             if (order.Status != OrderStatus.Принят)
             {
                 throw new Exception("Заказ не в статусе \"Принят\"");
+            }
+            if (!_storeStorage.CheckAvailabilityAndWriteOff(order.SetId, order.Count))
+            {
+                throw new Exception("Недостаточно блюд");
             }
             _orderStorage.Update(new OrderBindingModel
             {

@@ -14,14 +14,17 @@ namespace FoodDeliveryFileImplement
         private readonly string DishFileName = "Dish.xml";
         private readonly string OrderFileName = "Order.xml";
         private readonly string SetFileName = "Set.xml";
+        private readonly string StoreFileName = "Store.xml";
         public List<Dish> Dishes { get; set; }
         public List<Order> Orders { get; set; }
         public List<Set> Sets { get; set; }
+        public List<Store> Stores { get; set; }
         private FileDataListSingleton()
         {
             Dishes = LoadDishes();
             Orders = LoadOrders();
             Sets = LoadSets();
+            Stores = LoadStores();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -36,6 +39,7 @@ namespace FoodDeliveryFileImplement
             SaveDishes();
             SaveOrders();
             SaveProducts();
+            SaveStores();
         }
         private List<Dish> LoadDishes()
         {
@@ -104,6 +108,34 @@ namespace FoodDeliveryFileImplement
             }
             return list;
         }
+
+        private List<Store> LoadStores()
+        {
+            var list = new List<Store>();
+            if (File.Exists(StoreFileName))
+            {
+                XDocument xDocument = XDocument.Load(StoreFileName);
+                var xElements = xDocument.Root.Elements("Store").ToList();
+                foreach (var elem in xElements)
+                {
+                    var storeDishes = new Dictionary<int, int>();
+                    foreach (var dish in elem.Element("StoreDishes").Elements("StoreDish").ToList())
+                    {
+                        storeDishes.Add(Convert.ToInt32(dish.Element("Key").Value), Convert.ToInt32(dish.Element("Value").Value));
+                    }
+                    list.Add(new Store
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        StoreName = elem.Element("StoreName").Value,
+                        FullNameResponsible = elem.Element("FullNameResponsible").Value,
+                        CreationDate = Convert.ToDateTime(elem.Element("CreationDate").Value),
+                        StoreDishes = storeDishes
+                    });
+                }
+            }
+            return list;
+        }
+
         private void SaveDishes()
         {
             if (Dishes != null)
@@ -161,6 +193,31 @@ namespace FoodDeliveryFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(SetFileName);
+            }
+        }
+
+        private void SaveStores()
+        {
+            if (Stores != null)
+            {
+                var xElement = new XElement("Stores");
+                foreach (var store in Stores)
+                {
+                    var dishesElement = new XElement("StoreDishes");
+                    foreach (var dish in store.StoreDishes)
+                    {
+                        dishesElement.Add(new XElement("StoreDish",
+                            new XElement("Key", dish.Key),
+                            new XElement("Value", dish.Value)));
+                    }
+                    xElement.Add(new XElement("Store", new XAttribute("Id", store.Id),
+                        new XElement("StoreName", store.StoreName),
+                        new XElement("FullNameResponsible", store.FullNameResponsible),
+                        new XElement("CreationDate", store.CreationDate.ToString()), 
+                        dishesElement));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(StoreFileName);
             }
         }
     }
