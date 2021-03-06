@@ -37,24 +37,24 @@ namespace FoodDeliveryFileImplement.Implements
         public void Insert(DishBindingModel model)
         {
             int maxId = source.Dishes.Count > 0 ? source.Dishes.Max(rec => rec.Id) : 0;
-            var element = new Dish { Id = maxId + 1 };
-            source.Dishes.Add(CreateModel(model, element));
+            var newDish = new Dish { Id = maxId + 1 };
+            source.Dishes.Add(CreateModel(model, newDish));
         }
         public void Update(DishBindingModel model)
         {
-            var element = source.Dishes.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            var dish = source.Dishes.FirstOrDefault(rec => rec.Id == model.Id);
+            if (dish == null)
             {
                 throw new Exception("Блюдо не найдено");
             }
-            CreateModel(model, element);
+            CreateModel(model, dish);
         }
         public void Delete(DishBindingModel model)
         {
-            Dish element = source.Dishes.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element != null)
+            Dish dish = source.Dishes.FirstOrDefault(rec => rec.Id == model.Id);
+            if (dish != null)
             {
-                source.Dishes.Remove(element);
+                source.Dishes.Remove(dish);
             }
             else
             {

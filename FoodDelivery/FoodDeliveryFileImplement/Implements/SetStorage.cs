@@ -36,28 +36,28 @@ namespace FoodDeliveryFileImplement.Implements
         public void Insert(SetBindingModel model)
         {
             int maxId = source.Sets.Count > 0 ? source.Sets.Max(rec => rec.Id) : 0;
-            var element = new Set
+            var newSet = new Set
             {
                 Id = maxId + 1,
                 SetDishes = new Dictionary<int, int>()
             };
-            source.Sets.Add(CreateModel(model, element));
+            source.Sets.Add(CreateModel(model, newSet));
         }
         public void Update(SetBindingModel model)
         {
-            var element = source.Sets.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element == null)
+            var set = source.Sets.FirstOrDefault(rec => rec.Id == model.Id);
+            if (set == null)
             {
                 throw new Exception("Набор не найден");
             }
-            CreateModel(model, element);
+            CreateModel(model, set);
         }
         public void Delete(SetBindingModel model)
         {
-            Set element = source.Sets.FirstOrDefault(rec => rec.Id == model.Id);
-            if (element != null)
+            Set set = source.Sets.FirstOrDefault(rec => rec.Id == model.Id);
+            if (set != null)
             {
-                source.Sets.Remove(element);
+                source.Sets.Remove(set);
             }
             else
             {
@@ -68,7 +68,6 @@ namespace FoodDeliveryFileImplement.Implements
         {
             set.SetName = model.SetName;
             set.Price = model.Price;
-            // удаляем убранные
             foreach (var key in set.SetDishes.Keys.ToList())
             {
                 if (!model.SetDishes.ContainsKey(key))
@@ -76,7 +75,6 @@ namespace FoodDeliveryFileImplement.Implements
                     set.SetDishes.Remove(key);
                 }
             }
-            // обновляем существуюущие и добавляем новые
             foreach (var dish in model.SetDishes)
             {
                 if (set.SetDishes.ContainsKey(dish.Key))
