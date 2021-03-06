@@ -14,7 +14,7 @@ namespace FoodDeliveryView
         public new IUnityContainer Container { get; set; }
         private readonly StoreLogic storeLogic;
 
-        public FormStoreReplenishment(StoreLogic logic_S,DishLogic logic_D)
+        public FormStoreReplenishment(StoreLogic logic_S, DishLogic logic_D)
         {
             InitializeComponent();
             this.storeLogic = logic_S;
