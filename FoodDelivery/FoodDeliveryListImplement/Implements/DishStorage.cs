@@ -48,8 +48,7 @@ namespace FoodDeliveryListImplement.Implements
             }
             foreach (var dish in source.Dishes)
             {
-                if (dish.Id == model.Id || dish.DishName ==
-               model.DishName)
+                if (dish.Id == model.Id || dish.DishName == model.DishName)
                 {
                     return CreateModel(dish);
                 }
