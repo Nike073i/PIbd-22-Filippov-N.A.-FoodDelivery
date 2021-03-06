@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Unity;
 using Unity.Lifetime;
 
-
 namespace FoodDeliveryView
 {
     static class Program

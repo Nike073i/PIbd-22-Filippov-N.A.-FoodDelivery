@@ -108,7 +108,6 @@ namespace FoodDeliveryView
                 {
                     try
                     {
-
                         setDishes.Remove(Convert.ToInt32(dataGridViewDishes.SelectedRows[0].Cells[0].Value));
                     }
                     catch (Exception ex)

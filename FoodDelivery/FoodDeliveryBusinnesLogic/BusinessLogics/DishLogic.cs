@@ -27,11 +27,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         }
         public void CreateOrUpdate(DishBindingModel model)
         {
-            var element = _dishStorage.GetElement(new DishBindingModel
+            var dish = _dishStorage.GetElement(new DishBindingModel
             {
                 DishName = model.DishName
             });
-            if (element != null && element.Id != model.Id)
+            if (dish != null && dish.Id != model.Id)
             {
                 throw new Exception("Уже есть блюдо с таким названием");
             }
@@ -46,11 +46,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         }
         public void Delete(DishBindingModel model)
         {
-            var element = _dishStorage.GetElement(new DishBindingModel
+            var dish = _dishStorage.GetElement(new DishBindingModel
             {
                 Id = model.Id
             });
-            if (element == null)
+            if (dish == null)
             {
                 throw new Exception("Блюдо не найдено");
             }
