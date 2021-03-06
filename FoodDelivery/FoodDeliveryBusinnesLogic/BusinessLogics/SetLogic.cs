@@ -27,11 +27,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         }
         public void CreateOrUpdate(SetBindingModel model)
         {
-            var element = _setStorage.GetElement(new SetBindingModel
+            var set = _setStorage.GetElement(new SetBindingModel
             {
                 SetName = model.SetName
             });
-            if (element != null && element.Id != model.Id)
+            if (set != null && set.Id != model.Id)
             {
                 throw new Exception("Уже есть набор с таким названием");
             }
@@ -46,11 +46,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         }
         public void Delete(SetBindingModel model)
         {
-            var element = _setStorage.GetElement(new SetBindingModel
+            var set = _setStorage.GetElement(new SetBindingModel
             {
                 Id = model.Id
             });
-            if (element == null)
+            if (set == null)
             {
                 throw new Exception("Набор не найден");
             }

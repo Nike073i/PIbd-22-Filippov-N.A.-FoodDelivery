@@ -83,7 +83,7 @@ namespace FoodDeliveryListImplement.Implements
             }
             if (tempSet == null)
             {
-                throw new Exception("Элемент не найден");
+                throw new Exception("Набор не найден");
             }
             CreateModel(model, tempSet);
         }
@@ -97,13 +97,12 @@ namespace FoodDeliveryListImplement.Implements
                     return;
                 }
             }
-            throw new Exception("Элемент не найден");
+            throw new Exception("Набор не найден");
         }
         private Set CreateModel(SetBindingModel model, Set set)
         {
             set.SetName = model.SetName;
             set.Price = model.Price;
-            // удаляем убранные
             foreach (var key in set.SetDishes.Keys.ToList())
             {
                 if (!model.SetDishes.ContainsKey(key))
@@ -111,7 +110,6 @@ namespace FoodDeliveryListImplement.Implements
                     set.SetDishes.Remove(key);
                 }
             }
-            // обновляем существуюущие и добавляем новые
             foreach (var dish in model.SetDishes)
             {
                 if (set.SetDishes.ContainsKey(dish.Key))
@@ -129,7 +127,6 @@ namespace FoodDeliveryListImplement.Implements
         }
         private SetViewModel CreateModel(Set set)
         {
-            // требуется дополнительно получить список компонентов для изделия с названиями и их количество
             Dictionary<int, (string, int)> setDishes = new Dictionary<int, (string, int)>();
             foreach (var sd in set.SetDishes)
             {
