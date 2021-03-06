@@ -33,6 +33,8 @@ namespace FoodDeliveryView
             this.directoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dishesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.storesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StoreReplenishmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
             this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
@@ -46,7 +48,8 @@ namespace FoodDeliveryView
             // menuStripFoodDelivery
             // 
             this.menuStripFoodDelivery.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.directoriesToolStripMenuItem});
+            this.directoriesToolStripMenuItem,
+            this.StoreReplenishmentToolStripMenuItem});
             this.menuStripFoodDelivery.Location = new System.Drawing.Point(0, 0);
             this.menuStripFoodDelivery.Name = "menuStripFoodDelivery";
             this.menuStripFoodDelivery.Size = new System.Drawing.Size(945, 24);
@@ -57,7 +60,8 @@ namespace FoodDeliveryView
             // 
             this.directoriesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dishesToolStripMenuItem,
-            this.setsToolStripMenuItem});
+            this.setsToolStripMenuItem,
+            this.storesToolStripMenuItem});
             this.directoriesToolStripMenuItem.Name = "directoriesToolStripMenuItem";
             this.directoriesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.directoriesToolStripMenuItem.Text = "Справочники";
@@ -65,16 +69,30 @@ namespace FoodDeliveryView
             // dishesToolStripMenuItem
             // 
             this.dishesToolStripMenuItem.Name = "dishesToolStripMenuItem";
-            this.dishesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.dishesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dishesToolStripMenuItem.Text = "Блюда";
             this.dishesToolStripMenuItem.Click += new System.EventHandler(this.DishesToolStripMenuItem_Click);
             // 
             // setsToolStripMenuItem
             // 
             this.setsToolStripMenuItem.Name = "setsToolStripMenuItem";
-            this.setsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.setsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.setsToolStripMenuItem.Text = "Наборы";
             this.setsToolStripMenuItem.Click += new System.EventHandler(this.SetsToolStripMenuItem_Click);
+            // 
+            // storesToolStripMenuItem
+            // 
+            this.storesToolStripMenuItem.Name = "storesToolStripMenuItem";
+            this.storesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.storesToolStripMenuItem.Text = "Склады";
+            this.storesToolStripMenuItem.Click += new System.EventHandler(this.storesToolStripMenuItem_Click);
+            // 
+            // StoreReplenishmentToolStripMenuItem
+            // 
+            this.StoreReplenishmentToolStripMenuItem.Name = "StoreReplenishmentToolStripMenuItem";
+            this.StoreReplenishmentToolStripMenuItem.Size = new System.Drawing.Size(129, 20);
+            this.StoreReplenishmentToolStripMenuItem.Text = "Пополнение склада";
+            this.StoreReplenishmentToolStripMenuItem.Click += new System.EventHandler(this.StoreReplenishmentToolStripMenuItem_Click);
             // 
             // dataGridViewOrders
             // 
@@ -172,5 +190,7 @@ namespace FoodDeliveryView
         private System.Windows.Forms.Button buttonOrderReady;
         private System.Windows.Forms.Button buttonPayOrder;
         private System.Windows.Forms.Button buttonRef;
+        private System.Windows.Forms.ToolStripMenuItem storesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StoreReplenishmentToolStripMenuItem;
     }
 }

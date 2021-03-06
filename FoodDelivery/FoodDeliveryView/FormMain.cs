@@ -117,5 +117,17 @@ namespace FoodDeliveryView
         {
             LoadData();
         }
+
+        private void storesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStores>();
+            form.ShowDialog();
+        }
+
+        private void StoreReplenishmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormStoreReplenishment>();
+            form.ShowDialog();
+        }
     }
 }
