@@ -161,9 +161,6 @@ namespace FoodDeliveryListImplement.Implements
             };
         }
 
-        public bool CheckAvailabilityAndWriteOff(int SetId, int SetCount)
-        {
-            return true;
-        }
+        public bool CheckAvailabilityAndWriteOff(int SetId, int SetCount) => throw new NotImplementedException();
     }
 }

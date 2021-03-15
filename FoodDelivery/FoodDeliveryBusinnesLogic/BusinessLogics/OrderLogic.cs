@@ -11,7 +11,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
     {
         private readonly IOrderStorage _orderStorage;
         private readonly IStoreStorage _storeStorage;
-        public OrderLogic(IOrderStorage orderStorage,IStoreStorage storeStorage)
+        public OrderLogic(IOrderStorage orderStorage, IStoreStorage storeStorage)
         {
             _orderStorage = orderStorage;
             _storeStorage = storeStorage;

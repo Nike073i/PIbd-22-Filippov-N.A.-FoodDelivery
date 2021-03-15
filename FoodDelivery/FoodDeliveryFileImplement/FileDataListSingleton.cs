@@ -213,7 +213,7 @@ namespace FoodDeliveryFileImplement
                     xElement.Add(new XElement("Store", new XAttribute("Id", store.Id),
                         new XElement("StoreName", store.StoreName),
                         new XElement("FullNameResponsible", store.FullNameResponsible),
-                        new XElement("CreationDate", store.CreationDate.ToString()), 
+                        new XElement("CreationDate", store.CreationDate.ToString()),
                         dishesElement));
                 }
                 XDocument xDocument = new XDocument(xElement);
