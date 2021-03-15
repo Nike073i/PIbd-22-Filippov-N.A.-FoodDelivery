@@ -106,8 +106,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                 {
                     try
                     {
-                        var set = context.Sets.FirstOrDefault(rec => rec.Id ==
-                       model.Id);
+                        var set = context.Sets.FirstOrDefault(rec => rec.Id == model.Id);
                         if (set == null)
                         {
                             throw new Exception("Набор не найден");
@@ -130,8 +129,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
         {
             using (var context = new FoodDeliveryDatabase())
             {
-                Set set = context.Sets.FirstOrDefault(rec => rec.Id ==
-               model.Id);
+                Set set = context.Sets.FirstOrDefault(rec => rec.Id == model.Id);
                 if (set != null)
                 {
                     context.Sets.Remove(set);
@@ -143,8 +141,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                 }
             }
         }
-        private Set CreateModel(SetBindingModel model, Set set,
-       FoodDeliveryDatabase context)
+        private Set CreateModel(SetBindingModel model, Set set, FoodDeliveryDatabase context)
         {
             if (model.Id.HasValue)
             {
