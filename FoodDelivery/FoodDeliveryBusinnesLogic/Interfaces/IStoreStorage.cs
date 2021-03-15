@@ -12,5 +12,6 @@ namespace FoodDeliveryBusinnesLogic.Interfaces
         void Insert(StoreBindingModel model);
         void Update(StoreBindingModel model);
         void Delete(StoreBindingModel model);
+        bool CheckAvailabilityAndWriteOff(int SetId, int SetCounts);
     }
 }

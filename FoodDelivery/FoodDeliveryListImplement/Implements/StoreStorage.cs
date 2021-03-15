@@ -160,5 +160,7 @@ namespace FoodDeliveryListImplement.Implements
                 StoreDishes = storeDishes
             };
         }
+
+        public bool CheckAvailabilityAndWriteOff(int SetId, int SetCount) => throw new NotImplementedException();
     }
 }
