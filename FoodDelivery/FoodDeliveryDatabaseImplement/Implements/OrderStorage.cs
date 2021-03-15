@@ -2,6 +2,7 @@
 using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using FoodDeliveryDatabaseImplement.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,11 +16,12 @@ namespace FoodDeliveryDatabaseImplement.Implements
             using (var context = new FoodDeliveryDatabase())
             {
                 return context.Orders
+                .Include(rec => rec.Set)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
                     SetId = rec.SetId,
-                    SetName = context.Sets.FirstOrDefault(recS => recS.Id == rec.SetId).SetName,
+                    SetName = rec.Set.SetName,
                     Count = rec.Count,
                     Sum = rec.Sum,
                     Status = rec.Status,
@@ -37,18 +39,19 @@ namespace FoodDeliveryDatabaseImplement.Implements
             using (var context = new FoodDeliveryDatabase())
             {
                 return context.Orders
-                .Where(rec => rec.SetId.Equals(model.SetId))
-               .Select(rec => new OrderViewModel
-               {
-                   Id = rec.Id,
-                   SetId = rec.SetId,
-                   SetName = context.Sets.FirstOrDefault(recS => recS.Id == rec.SetId).SetName,
-                   Count = rec.Count,
-                   Sum = rec.Sum,
-                   Status = rec.Status,
-                   DateCreate = rec.DateCreate,
-                   DateImplement = rec.DateImplement
-               }).ToList();
+                    .Include(rec => rec.Set)
+                    .Where(rec => rec.SetId.Equals(model.SetId))
+                    .Select(rec => new OrderViewModel
+                    {
+                        Id = rec.Id,
+                        SetId = rec.SetId,
+                        SetName = rec.Set.SetName,
+                        Count = rec.Count,
+                        Sum = rec.Sum,
+                        Status = rec.Status,
+                        DateCreate = rec.DateCreate,
+                        DateImplement = rec.DateImplement
+                    }).ToList();
             }
         }
         public OrderViewModel GetElement(OrderBindingModel model)
@@ -60,13 +63,14 @@ namespace FoodDeliveryDatabaseImplement.Implements
             using (var context = new FoodDeliveryDatabase())
             {
                 var order = context.Orders
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                    .Include(rec => rec.Set)
+                    .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
                 {
                     Id = order.Id,
                     SetId = order.SetId,
-                    SetName = context.Sets.FirstOrDefault(rec => rec.Id == order.SetId).SetName,
+                    SetName = order.Set.SetName,
                     Count = order.Count,
                     Sum = order.Sum,
                     Status = order.Status,
