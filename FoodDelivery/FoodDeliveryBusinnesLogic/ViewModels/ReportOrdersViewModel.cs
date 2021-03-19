@@ -3,7 +3,7 @@ using System;
 
 namespace FoodDeliveryBusinnesLogic.ViewModels
 {
-    class ReportOrdersViewModel
+    public class ReportOrdersViewModel
     {
         public DateTime DateCreate { get; set; }
         public string SetName { get; set; }

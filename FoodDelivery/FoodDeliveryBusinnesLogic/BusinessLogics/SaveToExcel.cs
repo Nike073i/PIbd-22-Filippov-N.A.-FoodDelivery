@@ -111,76 +111,36 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         {
             WorkbookStylesPart sp = workbookpart.AddNewPart<WorkbookStylesPart>();
             sp.Stylesheet = new Stylesheet();
-            Fonts fonts = new Fonts()
-            {
-                Count = (UInt32Value)2U,
-                KnownFonts = true
-            };
+            Fonts fonts = new Fonts() { Count = (UInt32Value)2U, KnownFonts = true };
             Font fontUsual = new Font();
-            fontUsual.Append(new FontSize()
-            {
-                Val = 12D
-            });
+            fontUsual.Append(new FontSize() { Val = 12D });
             fontUsual.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
                 Theme = (UInt32Value)1U
             });
-            fontUsual.Append(new FontName()
-            {
-                Val = "Times New Roman"
-            });
-            fontUsual.Append(new FontFamilyNumbering()
-            {
-                Val = 2
-            });
-            fontUsual.Append(new FontScheme()
-            {
-                Val = FontSchemeValues.Minor
-            });
+            fontUsual.Append(new FontName() { Val = "Times New Roman" });
+            fontUsual.Append(new FontFamilyNumbering() { Val = 2 });
+            fontUsual.Append(new FontScheme() { Val = FontSchemeValues.Minor });
             Font fontTitle = new Font();
             fontTitle.Append(new Bold());
-            fontTitle.Append(new FontSize()
-            {
-                Val = 14D
-            });
+            fontTitle.Append(new FontSize() { Val = 14D });
             fontTitle.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
                 Theme = (UInt32Value)1U
             });
-            fontTitle.Append(new FontName()
-            {
-                Val = "Times New Roman"
-            });
-            fontTitle.Append(new FontFamilyNumbering()
-            {
-                Val = 2
-            });
-            fontTitle.Append(new FontScheme()
-            {
-                Val = FontSchemeValues.Minor
-            });
+            fontTitle.Append(new FontName() { Val = "Times New Roman" });
+            fontTitle.Append(new FontFamilyNumbering() { Val = 2 });
+            fontTitle.Append(new FontScheme() { Val = FontSchemeValues.Minor });
             fonts.Append(fontUsual);
             fonts.Append(fontTitle);
-            Fills fills = new Fills()
-            {
-                Count = (UInt32Value)2U
-            };
+            Fills fills = new Fills() { Count = (UInt32Value)2U };
             Fill fill1 = new Fill();
-            fill1.Append(new PatternFill()
-            {
-                PatternType = PatternValues.None
-            });
+            fill1.Append(new PatternFill() { PatternType = PatternValues.None });
             Fill fill2 = new Fill();
-            fill2.Append(new PatternFill()
-            {
-                PatternType = PatternValues.Gray125
-            });
+            fill2.Append(new PatternFill() { PatternType = PatternValues.Gray125 });
             fills.Append(fill1);
             fills.Append(fill2);
-            Borders borders = new Borders()
-            {
-                Count = (UInt32Value)2U
-            };
+            Borders borders = new Borders() { Count = (UInt32Value)2U };
             Border borderNoBorder = new Border();
             borderNoBorder.Append(new LeftBorder());
             borderNoBorder.Append(new RightBorder());
@@ -188,10 +148,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             borderNoBorder.Append(new BottomBorder());
             borderNoBorder.Append(new DiagonalBorder());
             Border borderThin = new Border();
-            LeftBorder leftBorder = new LeftBorder()
-            {
-                Style = BorderStyleValues.Thin
-            };
+            LeftBorder leftBorder = new LeftBorder() { Style = BorderStyleValues.Thin };
             leftBorder.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
                 Indexed = (UInt32Value)64U
@@ -204,10 +161,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             {
                 Indexed = (UInt32Value)64U
             });
-            TopBorder topBorder = new TopBorder()
-            {
-                Style = BorderStyleValues.Thin
-            };
+            TopBorder topBorder = new TopBorder() { Style = BorderStyleValues.Thin };
             topBorder.Append(new DocumentFormat.OpenXml.Office2010.Excel.Color()
             {
                 Indexed = (UInt32Value)64U
@@ -239,10 +193,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                 BorderId = (UInt32Value)0U
             };
             cellStyleFormats.Append(cellFormatStyle);
-            CellFormats cellFormats = new CellFormats()
-            {
-                Count = (UInt32Value)3U
-            };
+            CellFormats cellFormats = new CellFormats() { Count = (UInt32Value)3U };
             CellFormat cellFormatFont = new CellFormat()
             {
                 NumberFormatId = (UInt32Value)0U,
@@ -280,10 +231,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             cellFormats.Append(cellFormatFont);
             cellFormats.Append(cellFormatFontAndBorder);
             cellFormats.Append(cellFormatTitle);
-            CellStyles cellStyles = new CellStyles()
-            {
-                Count = (UInt32Value)1U
-            };
+            CellStyles cellStyles = new CellStyles() { Count = (UInt32Value)1U };
             cellStyles.Append(new CellStyle()
             {
                 Name = "Normal",
@@ -307,7 +255,8 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             {
                 Uri = "{EB79DEF2-80B8-43e5-95BD-54CBDDF9020C}"
             };
-            stylesheetExtension1.AddNamespaceDeclaration("x14", "http://schemas.microsoft.com/office/spreadsheetml/2009/9/main");
+            stylesheetExtension1.AddNamespaceDeclaration("x14",
+           "http://schemas.microsoft.com/office/spreadsheetml/2009/9/main");
             stylesheetExtension1.Append(new SlicerStyles()
             {
                 DefaultSlicerStyle = "SlicerStyleLight1"
@@ -378,9 +327,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                 cell = newCell;
             }
             // вставляем новый текст
-            cellParameters.ShareStringPart.SharedStringTable.AppendChild(new SharedStringItem(new Text(cellParameters.Text)));
+            cellParameters.ShareStringPart.SharedStringTable.AppendChild(new SharedStringItem
+                (new Text(cellParameters.Text)));
             cellParameters.ShareStringPart.SharedStringTable.Save();
-            cell.CellValue = new CellValue((cellParameters.ShareStringPart.SharedStringTable.Elements<SharedStringItem>()
+            cell.CellValue = new CellValue((cellParameters.ShareStringPart.SharedStringTable
+                .Elements<SharedStringItem>()
                 .Count() - 1).ToString());
             cell.DataType = new EnumValue<CellValues>(CellValues.SharedString);
             cell.StyleIndex = cellParameters.StyleIndex;
