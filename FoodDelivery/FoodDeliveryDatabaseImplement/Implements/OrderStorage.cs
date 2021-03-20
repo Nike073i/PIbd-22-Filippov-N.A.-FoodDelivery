@@ -40,7 +40,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
             {
                 return context.Orders
                     .Include(rec => rec.Set)
-                    .Where(rec => rec.SetId.Equals(model.SetId))
+                    .Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo)
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,

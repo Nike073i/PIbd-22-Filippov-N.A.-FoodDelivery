@@ -505,7 +505,7 @@
             <DataSetName>DataSetOrders</DataSetName>
             <Top>2.03757cm</Top>
             <Left>0.39688cm</Left>
-            <Height>1.08479cm</Height>
+            <Height>1.0848cm</Height>
             <Width>7.66134in</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -563,7 +563,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!Sum.Value, "DataSetOrders")</Value>
+                    <Value>=Sum(Fields!Sum.Value, "DataSetOrders")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
