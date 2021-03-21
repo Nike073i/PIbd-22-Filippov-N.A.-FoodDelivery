@@ -17,5 +17,7 @@ namespace FoodDeliveryDatabaseImplement
         public virtual DbSet<Set> Sets { set; get; }
         public virtual DbSet<SetDish> SetDishes { set; get; }
         public virtual DbSet<Order> Orders { set; get; }
+        public virtual DbSet<Store> Stores { set; get; }
+        public virtual DbSet<StoreDish> StoreDishes { set; get; }
     }
 }

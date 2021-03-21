@@ -4,14 +4,16 @@ using FoodDeliveryDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodDeliveryDatabaseImplement.Migrations
 {
     [DbContext(typeof(FoodDeliveryDatabase))]
-    partial class FoodDeliveryDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20210321113832_add store and storeDish")]
+    partial class addstoreandstoreDish
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

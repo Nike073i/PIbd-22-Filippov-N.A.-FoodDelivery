@@ -13,5 +13,8 @@ namespace FoodDeliveryDatabaseImplement.Models
 
         [ForeignKey("DishId")]
         public virtual List<SetDish> SetDishes { get; set; }
+
+        [ForeignKey("DishId")]
+        public virtual List<StoreDish> StoreDishes { get; set; }
     }
 }

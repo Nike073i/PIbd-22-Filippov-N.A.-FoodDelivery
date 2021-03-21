@@ -41,6 +41,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             }
             if (model.Id.HasValue)
             {
+                model.CreationDate = store.CreationDate;
                 _storeStorage.Update(model);
             }
             else
