@@ -72,8 +72,8 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             SaveToWord.CreateDoc(new WordInfo
             {
                 FileName = model.FileName,
-                Title = "Список блюд",
-                Dishes = _dishStorage.GetFullList()
+                Title = "Список наборов",
+                Sets = _setStorage.GetFullList()
             });
         }
 

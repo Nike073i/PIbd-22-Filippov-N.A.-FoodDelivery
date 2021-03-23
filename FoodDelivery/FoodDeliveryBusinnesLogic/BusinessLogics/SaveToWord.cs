@@ -30,14 +30,22 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                         JustificationValues = JustificationValues.Center
                     }
                 }));
-                foreach (var dish in info.Dishes)
+                foreach (var set in info.Sets)
                 {
                     docBody.AppendChild(CreateParagraph(new WordParagraph
                     {
                         Texts = new List<(string, WordTextProperties)> {
-                            (dish.DishName, new WordTextProperties
+                            (set.SetName + ": ",
+                            new WordTextProperties
                             {
-                                Size = "24"
+                                Bold = true,
+                                Size = "24",
+                            }),
+                            (set.Price.ToString(),
+                            new WordTextProperties
+                            {
+                                Bold = false,
+                                Size = "24",
                             })
                         },
                         TextProperties = new WordTextProperties
