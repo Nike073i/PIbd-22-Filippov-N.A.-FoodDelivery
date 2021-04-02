@@ -22,7 +22,10 @@ namespace FoodDeliveryFileImplement.Implements
             {
                 return null;
             }
-            return source.Orders.Where(rec => rec.DateCreate >= model.DateFrom && rec.DateCreate <= model.DateTo).Select(CreateModel).ToList();
+            return source.Orders.Where(rec => rec.SetId.Equals(model.SetId)
+                    || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId)).Select(CreateModel).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -63,6 +66,7 @@ namespace FoodDeliveryFileImplement.Implements
         private Order CreateModel(OrderBindingModel model, Order order)
         {
             order.SetId = model.SetId;
+            order.ClientId = model.ClientId.GetValueOrDefault();
             order.Count = model.Count;
             order.Sum = model.Sum;
             order.Status = model.Status;
@@ -74,9 +78,13 @@ namespace FoodDeliveryFileImplement.Implements
         {
             var set = source.Sets.FirstOrDefault(rec => rec.Id == order.SetId);
             string setName = set?.SetName;
+            var client = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId);
+            string clientFIO = client?.ClientFIO;
             return new OrderViewModel
             {
                 Id = order.Id,
+                ClientId = order.ClientId,
+                ClientFIO = clientFIO,
                 SetId = order.SetId,
                 SetName = setName,
                 Count = order.Count,

@@ -13,6 +13,7 @@ namespace FoodDeliveryDatabaseImplement
             }
             base.OnConfiguring(optionsBuilder);
         }
+        public virtual DbSet<Client> Clients { set; get; }
         public virtual DbSet<Dish> Dishes { set; get; }
         public virtual DbSet<Set> Sets { set; get; }
         public virtual DbSet<SetDish> SetDishes { set; get; }
