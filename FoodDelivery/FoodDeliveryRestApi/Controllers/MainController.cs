@@ -13,19 +13,17 @@ namespace FoodDeliveryRestApi.Controllers
     {
         private readonly OrderLogic _order;
         private readonly SetLogic _set;
-        private readonly OrderLogic _main;
-        public MainController(OrderLogic order, SetLogic set, OrderLogic main)
+        public MainController(OrderLogic order, SetLogic set)
         {
             _order = order;
             _set = set;
-            _main = main;
         }
         [HttpGet]
         public List<SetViewModel> GetSetList() => _set.Read(null)?.ToList();
         [HttpGet]
-        public SetViewModel GetSet(int productId) => _set.Read(new SetBindingModel
+        public SetViewModel GetSet(int setId) => _set.Read(new SetBindingModel
         {
-            Id = productId
+            Id = setId
         })?[0];
         [HttpGet]
         public List<OrderViewModel> GetOrders(int clientId) => _order.Read(new OrderBindingModel
@@ -33,6 +31,6 @@ namespace FoodDeliveryRestApi.Controllers
             ClientId = clientId
         });
         [HttpPost]
-        public void CreateOrder(CreateOrderBindingModel model) => _main.CreateOrder(model);
+        public void CreateOrder(CreateOrderBindingModel model) => _order.CreateOrder(model);
     }
 }

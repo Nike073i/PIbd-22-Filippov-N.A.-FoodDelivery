@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-4">Набор:</div>
         <div class="col-8">
-            <select id="set" name="set" class="form-control" aspitems="@(new SelectList(@ViewBag.Sets,"Id", "SetName"))"></select>
+            <select id="set" name="set" class="form-control" asp-items="@(new SelectList(@ViewBag.Sets,"Id", "SetName"))"></select>
         </div>
     </div>
     <div class="row">

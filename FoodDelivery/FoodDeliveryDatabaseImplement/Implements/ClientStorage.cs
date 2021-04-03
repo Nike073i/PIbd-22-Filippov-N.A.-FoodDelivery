@@ -33,7 +33,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
             }
             using (var context = new FoodDeliveryDatabase())
             {
-                return context.Clients
+                var clients = context.Clients
                 .Where(rec => rec.Email == model.Email && rec.Password == rec.Password)
                 .Select(rec => new ClientViewModel
                 {
@@ -43,6 +43,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                     Password = rec.Password
                 })
                 .ToList();
+                return clients != null && clients.Count > 0 ? clients : null;
             }
         }
 

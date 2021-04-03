@@ -109,8 +109,7 @@ namespace FoodDeliveryClientApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Products =
-            APIClient.GetRequest<List<SetViewModel>>("api/main/getsetlist");
+            ViewBag.Sets = APIClient.GetRequest<List<SetViewModel>>("api/main/getsetlist");
             return View();
         }
         [HttpPost]
@@ -122,7 +121,7 @@ namespace FoodDeliveryClientApp.Controllers
             }
             APIClient.PostRequest("api/main/createorder", new CreateOrderBindingModel
             {
-                ClientId = (int)Program.Client.Id,
+                ClientId = Program.Client.Id,
                 SetId = set,
                 Count = count,
                 Sum = sum
@@ -130,10 +129,10 @@ namespace FoodDeliveryClientApp.Controllers
             Response.Redirect("Index");
         }
         [HttpPost]
-        public decimal Calc(decimal count, int setId)
+        public decimal Calc(decimal count, int set)
         {
-            SetViewModel prod = APIClient.GetRequest<SetViewModel>($"api/main/getset?setId={setId}");
-            return count * prod.Price;
+            SetViewModel model = APIClient.GetRequest<SetViewModel>($"api/main/getset?setId={set}");
+            return count * model.Price;
         }
     }
 }

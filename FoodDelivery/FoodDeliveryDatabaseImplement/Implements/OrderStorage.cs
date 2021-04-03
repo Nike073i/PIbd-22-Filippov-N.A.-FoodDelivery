@@ -73,6 +73,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
             {
                 var order = context.Orders
                     .Include(rec => rec.Set)
+                    .Include(rec => rec.Client)
                     .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
