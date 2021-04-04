@@ -11,11 +11,13 @@ namespace FoodDeliveryView
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
+        private readonly ReportLogic _reportLogic;
 
-        public FormMain(OrderLogic orderLogic)
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
+            this._reportLogic = reportLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -127,6 +129,32 @@ namespace FoodDeliveryView
         private void StoreReplenishmentToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormStoreReplenishment>();
+            form.ShowDialog();
+        }
+
+        private void ListDishesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _reportLogic.SaveComponentsToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void DishSetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportSetDishes>();
+            form.ShowDialog();
+        }
+        private void ListOrdersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
     }

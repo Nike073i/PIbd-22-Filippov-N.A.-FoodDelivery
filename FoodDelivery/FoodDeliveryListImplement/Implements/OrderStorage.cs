@@ -33,7 +33,7 @@ namespace FoodDeliveryListImplement.Implements
             List<OrderViewModel> result = new List<OrderViewModel>();
             foreach (var order in source.Orders)
             {
-                if (order.SetId.Equals(model.SetId))
+                if (order.DateCreate >= model.DateTo && order.DateCreate <= model.DateFrom)
                 {
                     result.Add(CreateModel(order));
                 }
