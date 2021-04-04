@@ -217,11 +217,23 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormReportOrdersByDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportOrdersByDate.Designer.cs">
+      <DependentUpon>FormReportOrdersByDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportSetDishes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormReportSetDishes.Designer.cs">
       <DependentUpon>FormReportSetDishes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReportStoreDish.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReportStoreDish.Designer.cs">
+      <DependentUpon>FormReportStoreDish.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSet.cs">
       <SubType>Form</SubType>
@@ -277,8 +289,14 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormReportOrdersByDate.resx">
+      <DependentUpon>FormReportOrdersByDate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportSetDishes.resx">
       <DependentUpon>FormReportSetDishes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReportStoreDish.resx">
+      <DependentUpon>FormReportStoreDish.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSet.resx">
       <DependentUpon>FormSet.cs</DependentUpon>
@@ -307,12 +325,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ReportOrdersByDate.rdlc" />
     <EmbeddedResource Include="ReportParameterPeriod.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.DishViewModel.datasource" />
     <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.OrderViewModel.datasource" />
+    <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.ReportOrdersByDateViewModel.datasource" />
     <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.ReportOrdersViewModel.datasource" />
+    <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.ReportSetDishViewModel.datasource" />
+    <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.ReportStoreDishViewModel.datasource" />
     <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.SetViewModel.datasource" />
+    <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.StoreViewModel.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

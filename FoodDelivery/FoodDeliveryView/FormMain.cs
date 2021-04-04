@@ -157,5 +157,32 @@ namespace FoodDeliveryView
             var form = Container.Resolve<FormReportOrders>();
             form.ShowDialog();
         }
+
+        private void ListStoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog { Filter = "docx|*.docx" })
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    _reportLogic.SaveStoresToWordFile(new ReportBindingModel
+                    {
+                        FileName = dialog.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void StoreDishesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportStoreDish>();
+            form.ShowDialog();
+        }
+        private void ListOrdersByDateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormReportOrdersByDate>();
+            form.ShowDialog();
+        }
     }
 }
