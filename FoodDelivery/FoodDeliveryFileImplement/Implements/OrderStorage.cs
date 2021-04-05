@@ -22,7 +22,12 @@ namespace FoodDeliveryFileImplement.Implements
             {
                 return null;
             }
-            return source.Orders.Where(rec => rec.SetId.Equals(model.SetId)).Select(CreateModel).ToList();
+            return source.Orders
+                .Where(rec => rec.SetId.Equals(model.SetId)
+                    || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+                .Select(CreateModel)
+                .ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
