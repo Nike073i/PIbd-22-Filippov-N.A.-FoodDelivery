@@ -166,8 +166,11 @@ namespace FoodDeliveryDatabaseImplement.Implements
                 // обновили количество у существующих записей
                 foreach (var updateDish in storeDish)
                 {
-                    updateDish.Count = model.StoreDishes[updateDish.DishId].Item2;
-                    model.StoreDishes.Remove(updateDish.DishId);
+                    if (model.StoreDishes.ContainsKey(updateDish.DishId))
+                    {
+                        updateDish.Count = model.StoreDishes[updateDish.DishId].Item2;
+                        model.StoreDishes.Remove(updateDish.DishId);
+                    }
                 }
                 context.SaveChanges();
             }
@@ -188,15 +191,15 @@ namespace FoodDeliveryDatabaseImplement.Implements
         {
             using (var context = new FoodDeliveryDatabase())
             {
-                var setDishes = context.SetDishes.Where(x => x.SetId == SetId);
-                if (setDishes.Count() == 0)
-                {
-                    return false;
-                }
                 using (var transaction = context.Database.BeginTransaction())
                 {
                     try
                     {
+                        var setDishes = context.SetDishes.Where(x => x.SetId == SetId);
+                        if (setDishes.Count() == 0)
+                        {
+                            throw new Exception("Набор не найден");
+                        }
                         foreach (var setDish in setDishes)
                         {
                             int required = setDish.Count * SetCount;
