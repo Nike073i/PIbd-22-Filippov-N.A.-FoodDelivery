@@ -92,7 +92,7 @@ namespace FoodDeliveryView
             // 
             // reportViewerOrders
             // 
-            this.reportViewerOrders.LocalReport.ReportEmbeddedResource = "FoodDeliveryView.ReportParameterPeriod.rdlc";
+            this.reportViewerOrders.LocalReport.ReportEmbeddedResource = "FoodDeliveryView.ReportOrders.rdlc";
             this.reportViewerOrders.Location = new System.Drawing.Point(0, 42);
             this.reportViewerOrders.Name = "reportViewerOrders";
             this.reportViewerOrders.ServerReport.BearerToken = null;

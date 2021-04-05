@@ -4,7 +4,7 @@ using DocumentFormat.OpenXml.Spreadsheet;
 
 namespace FoodDeliveryBusinnesLogic.HelperModels
 {
-    class ExcelCellParameters
+    public class ExcelCellParameters
     {
         public Worksheet Worksheet { get; set; }
         public string ColumnName { get; set; }
