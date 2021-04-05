@@ -15,11 +15,15 @@ namespace FoodDeliveryRestApi.Controllers
             _logic = logic;
         }
         [HttpGet]
-        public ClientViewModel Login(string login, string password) => _logic.Read(new ClientBindingModel
+        public ClientViewModel Login(string login, string password)
         {
-            Email = login,
-            Password = password
-        })?[0];
+            var client = _logic.Read(new ClientBindingModel
+            {
+                Email = login,
+                Password = password
+            });
+            return (client != null && client.Count > 0) ? client[0] : null;
+        }
         [HttpPost]
         public void Register(ClientBindingModel model) => _logic.CreateOrUpdate(model);
         [HttpPost]
