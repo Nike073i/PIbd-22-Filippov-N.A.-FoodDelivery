@@ -2,7 +2,7 @@
 
 namespace FoodDeliveryBusinnesLogic.HelperModels
 {
-    class WordTextProperties
+    public class WordTextProperties
     {
         public string Size { get; set; }
         public bool Bold { get; set; }

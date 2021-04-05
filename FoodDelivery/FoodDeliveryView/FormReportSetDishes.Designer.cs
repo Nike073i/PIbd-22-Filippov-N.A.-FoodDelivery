@@ -31,8 +31,8 @@ namespace FoodDeliveryView
         {
             this.buttonSaveToExcel = new System.Windows.Forms.Button();
             this.dataGridViewReport = new System.Windows.Forms.DataGridView();
-            this.ColumnDishName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnSetName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnDishName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewReport)).BeginInit();
             this.SuspendLayout();
@@ -52,20 +52,13 @@ namespace FoodDeliveryView
             this.dataGridViewReport.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewReport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnDishName,
             this.ColumnSetName,
+            this.ColumnDishName,
             this.ColumnCount});
             this.dataGridViewReport.Location = new System.Drawing.Point(3, 46);
             this.dataGridViewReport.Name = "dataGridViewReport";
             this.dataGridViewReport.Size = new System.Drawing.Size(770, 529);
             this.dataGridViewReport.TabIndex = 1;
-            // 
-            // ColumnDishName
-            // 
-            this.ColumnDishName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnDishName.FillWeight = 40F;
-            this.ColumnDishName.HeaderText = "Блюдо";
-            this.ColumnDishName.Name = "ColumnDishName";
             // 
             // ColumnSetName
             // 
@@ -73,6 +66,13 @@ namespace FoodDeliveryView
             this.ColumnSetName.FillWeight = 40F;
             this.ColumnSetName.HeaderText = "Набор";
             this.ColumnSetName.Name = "ColumnSetName";
+            // 
+            // ColumnDishName
+            // 
+            this.ColumnDishName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnDishName.FillWeight = 40F;
+            this.ColumnDishName.HeaderText = "Блюдо";
+            this.ColumnDishName.Name = "ColumnDishName";
             // 
             // ColumnCount
             // 
@@ -100,8 +100,8 @@ namespace FoodDeliveryView
 
         private System.Windows.Forms.Button buttonSaveToExcel;
         private System.Windows.Forms.DataGridView dataGridViewReport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDishName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnSetName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDishName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnCount;
     }
 }

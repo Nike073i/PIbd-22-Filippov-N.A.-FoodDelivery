@@ -2,7 +2,7 @@
 
 namespace FoodDeliveryBusinnesLogic.HelperModels
 {
-    class ExcelMergeParameters
+    public class ExcelMergeParameters
     {
         public Worksheet Worksheet { get; set; }
         public string CellFromName { get; set; }
