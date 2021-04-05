@@ -113,7 +113,6 @@ namespace FoodDeliveryView
             this.Controls.Add(this.dateTimePickerFrom);
             this.Name = "FormReportOrders";
             this.Text = "Заказы клиентов";
-            this.Load += new System.EventHandler(this.FormReportOrders_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

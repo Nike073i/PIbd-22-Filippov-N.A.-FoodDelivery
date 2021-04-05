@@ -78,10 +78,5 @@ namespace FoodDeliveryView
                 }
             }
         }
-
-        private void FormReportOrders_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
