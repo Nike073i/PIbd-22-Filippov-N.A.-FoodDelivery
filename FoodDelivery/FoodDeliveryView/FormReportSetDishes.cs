@@ -13,7 +13,8 @@ namespace FoodDeliveryView
         private readonly ReportLogic logic;
         public FormReportSetDishes(ReportLogic logic)
         {
-            InitializeComponent(); this.logic = logic;
+            InitializeComponent();
+            this.logic = logic;
         }
         private void FormReportSetDishes_Load(object sender, EventArgs e)
         {
@@ -26,11 +27,11 @@ namespace FoodDeliveryView
                     foreach (var elem in dict)
                     {
                         dataGridViewReport.Rows.Add(new object[] {
-                            elem.DishName,
+                            elem.SetName,
                             "",
                             ""
                         });
-                        foreach (var listElem in elem.Sets)
+                        foreach (var listElem in elem.Dishes)
                         {
                             dataGridViewReport.Rows.Add(new object[] {
                                 "",
@@ -61,7 +62,7 @@ namespace FoodDeliveryView
                 {
                     try
                     {
-                        logic.SaveProductComponentToExcelFile(new ReportBindingModel
+                        logic.SaveSetDishesToExcelFile(new ReportBindingModel
                         {
                             FileName = dialog.FileName
                         });

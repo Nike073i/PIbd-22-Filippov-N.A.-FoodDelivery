@@ -3,7 +3,7 @@ using MigraDoc.DocumentObjectModel.Tables;
 
 namespace FoodDeliveryBusinnesLogic.HelperModels
 {
-    class PdfCellParameters
+    public class PdfCellParameters
     {
         public Cell Cell { get; set; }
         public string Text { get; set; }

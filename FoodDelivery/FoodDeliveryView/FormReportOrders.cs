@@ -38,6 +38,7 @@ namespace FoodDeliveryView
                 });
                 ReportDataSource source = new ReportDataSource("DataSetOrders",
                dataSource);
+                reportViewerOrders.LocalReport.DataSources.Clear();
                 reportViewerOrders.LocalReport.DataSources.Add(source);
                 reportViewerOrders.RefreshReport();
             }

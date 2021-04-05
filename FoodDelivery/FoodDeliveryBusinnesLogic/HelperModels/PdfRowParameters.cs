@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FoodDeliveryBusinnesLogic.HelperModels
 {
-    class PdfRowParameters
+    public class PdfRowParameters
     {
         public Table Table { get; set; }
         public List<string> Texts { get; set; }

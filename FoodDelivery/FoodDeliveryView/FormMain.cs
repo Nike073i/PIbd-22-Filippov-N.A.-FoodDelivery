@@ -127,7 +127,7 @@ namespace FoodDeliveryView
             {
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    _reportLogic.SaveComponentsToWordFile(new ReportBindingModel
+                    _reportLogic.SaveSetsToWordFile(new ReportBindingModel
                     {
                         FileName = dialog.FileName
                     });

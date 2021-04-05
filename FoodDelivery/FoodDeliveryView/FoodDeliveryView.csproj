@@ -298,7 +298,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReportParameterPeriod.rdlc" />
+    <EmbeddedResource Include="ReportOrders.rdlc" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.DishViewModel.datasource" />
     <None Include="Properties\DataSources\FoodDeliveryBusinnesLogic.ViewModels.OrderViewModel.datasource" />

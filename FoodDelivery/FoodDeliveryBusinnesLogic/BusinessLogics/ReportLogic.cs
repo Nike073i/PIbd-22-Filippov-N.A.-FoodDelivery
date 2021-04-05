@@ -22,25 +22,20 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         }
         public List<ReportSetDishViewModel> GetSetDish()
         {
-            var dishes = _dishStorage.GetFullList();
             var sets = _setStorage.GetFullList();
             var list = new List<ReportSetDishViewModel>();
-            foreach (var dish in dishes)
+            foreach (var set in sets)
             {
                 var record = new ReportSetDishViewModel
                 {
-                    DishName = dish.DishName,
-                    Sets = new List<Tuple<string, int>>(),
+                    SetName = set.SetName,
+                    Dishes = new List<Tuple<string, int>>(),
                     TotalCount = 0
                 };
-                foreach (var set in sets)
+                foreach (var dish in set.SetDishes)
                 {
-                    if (set.SetDishes.ContainsKey(dish.Id))
-                    {
-                        record.Sets.Add(new Tuple<string, int>(set.SetName,
-                       set.SetDishes[dish.Id].Item2));
-                        record.TotalCount += set.SetDishes[dish.Id].Item2;
-                    }
+                    record.Dishes.Add(new Tuple<string, int>(dish.Value.Item1, dish.Value.Item2));
+                    record.TotalCount += dish.Value.Item2;
                 }
                 list.Add(record);
             }
@@ -66,8 +61,8 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
            .ToList();
         }
 
-        /// Сохранение блюд в файл-Word
-        public void SaveComponentsToWordFile(ReportBindingModel model)
+        /// Сохранение наборов в файл-Word
+        public void SaveSetsToWordFile(ReportBindingModel model)
         {
             SaveToWord.CreateDoc(new WordInfo
             {
@@ -77,13 +72,13 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             });
         }
 
-        /// Сохранение блюд с указанием наборов в файл-Excel
-        public void SaveProductComponentToExcelFile(ReportBindingModel model)
+        /// Сохранение наборов с указанием компонентов в файл-Excel
+        public void SaveSetDishesToExcelFile(ReportBindingModel model)
         {
             SaveToExcel.CreateDoc(new ExcelInfo
             {
                 FileName = model.FileName,
-                Title = "Список блюд",
+                Title = "Список наборов с компонентами",
                 SetDishes = GetSetDish()
             });
         }

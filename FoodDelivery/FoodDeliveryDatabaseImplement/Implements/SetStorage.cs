@@ -154,8 +154,11 @@ namespace FoodDeliveryDatabaseImplement.Implements
                 // обновили количество у существующих записей
                 foreach (var updateDish in setDishes)
                 {
-                    updateDish.Count = model.SetDishes[updateDish.DishId].Item2;
-                    model.SetDishes.Remove(updateDish.DishId);
+                    if (model.SetDishes.ContainsKey(updateDish.DishId))
+                    {
+                        updateDish.Count = model.SetDishes[updateDish.DishId].Item2;
+                        model.SetDishes.Remove(updateDish.DishId);
+                    }
                 }
                 context.SaveChanges();
             }

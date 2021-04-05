@@ -59,51 +59,54 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                     CellToName = "C1"
                 });
                 uint rowIndex = 2;
-                foreach (var setDish in info.SetDishes)
+                if (info.SetDishes != null)
                 {
-                    InsertCellInWorksheet(new ExcelCellParameters
-                    {
-                        Worksheet = worksheetPart.Worksheet,
-                        ShareStringPart = shareStringPart,
-                        ColumnName = "A",
-                        RowIndex = rowIndex,
-                        Text = setDish.DishName,
-                        StyleIndex = 0U
-                    });
-                    rowIndex++;
-                    foreach (var set in setDish.Sets)
+                    foreach (var setDish in info.SetDishes)
                     {
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
                             Worksheet = worksheetPart.Worksheet,
                             ShareStringPart = shareStringPart,
-                            ColumnName = "B",
+                            ColumnName = "A",
                             RowIndex = rowIndex,
-                            Text = set.Item1,
-                            StyleIndex = 1U
+                            Text = setDish.SetName,
+                            StyleIndex = 0U
                         });
+                        rowIndex++;
+                        foreach (var dish in setDish.Dishes)
+                        {
+                            InsertCellInWorksheet(new ExcelCellParameters
+                            {
+                                Worksheet = worksheetPart.Worksheet,
+                                ShareStringPart = shareStringPart,
+                                ColumnName = "B",
+                                RowIndex = rowIndex,
+                                Text = dish.Item1,
+                                StyleIndex = 1U
+                            });
+                            InsertCellInWorksheet(new ExcelCellParameters
+                            {
+                                Worksheet = worksheetPart.Worksheet,
+                                ShareStringPart = shareStringPart,
+                                ColumnName = "C",
+                                RowIndex = rowIndex,
+                                Text = dish.Item2.ToString(),
+                                StyleIndex = 1U
+                            }); rowIndex++;
+                        }
                         InsertCellInWorksheet(new ExcelCellParameters
                         {
                             Worksheet = worksheetPart.Worksheet,
                             ShareStringPart = shareStringPart,
                             ColumnName = "C",
                             RowIndex = rowIndex,
-                            Text = set.Item2.ToString(),
-                            StyleIndex = 1U
-                        }); rowIndex++;
+                            Text = setDish.TotalCount.ToString(),
+                            StyleIndex = 0U
+                        });
+                        rowIndex++;
                     }
-                    InsertCellInWorksheet(new ExcelCellParameters
-                    {
-                        Worksheet = worksheetPart.Worksheet,
-                        ShareStringPart = shareStringPart,
-                        ColumnName = "C",
-                        RowIndex = rowIndex,
-                        Text = setDish.TotalCount.ToString(),
-                        StyleIndex = 0U
-                    });
-                    rowIndex++;
+                    workbookpart.Workbook.Save();
                 }
-                workbookpart.Workbook.Save();
             }
         }
 
