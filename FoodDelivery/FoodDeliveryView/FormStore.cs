@@ -17,6 +17,7 @@ namespace FoodDeliveryView
         private int? id;
         private readonly StoreLogic logic;
         private Dictionary<int, (string, int)> storeDishes;
+        private DateTime CreationDate;
 
         public FormStore(StoreLogic service)
         {
@@ -39,6 +40,7 @@ namespace FoodDeliveryView
                         textBoxStoreName.Text = view.StoreName;
                         textBoxFullName.Text = view.FullNameResponsible;
                         storeDishes = view.StoreDishes;
+                        CreationDate = view.CreationDate;
                         LoadData();
                     }
                 }
@@ -93,6 +95,7 @@ namespace FoodDeliveryView
                     Id = id,
                     StoreName = textBoxStoreName.Text,
                     FullNameResponsible = textBoxFullName.Text,
+                    CreationDate = CreationDate,
                     StoreDishes = storeDishes
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
