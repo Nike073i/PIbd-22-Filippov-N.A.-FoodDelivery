@@ -48,7 +48,7 @@ namespace FoodDeliveryListImplement.Implements
             }
             foreach (var order in source.Orders)
             {
-                if (order.Id == model.Id )
+                if (order.Id == model.Id)
                 {
                     return CreateModel(order);
                 }
@@ -79,7 +79,7 @@ namespace FoodDeliveryListImplement.Implements
             }
             if (tempOrder == null)
             {
-                throw new Exception("Элемент не найден");
+                throw new Exception("Заказ не найден");
             }
             CreateModel(model, tempOrder);
         }
@@ -93,7 +93,7 @@ namespace FoodDeliveryListImplement.Implements
                     return;
                 }
             }
-            throw new Exception("Элемент не найден");
+            throw new Exception("Заказ не найден");
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
