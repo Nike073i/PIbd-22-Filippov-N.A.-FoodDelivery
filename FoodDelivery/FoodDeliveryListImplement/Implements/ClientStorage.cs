@@ -1,4 +1,5 @@
 ﻿using FoodDeliveryBusinnesLogic.BindingModels;
+using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using FoodDeliveryListImplement.Models;
 using System;
@@ -6,7 +7,7 @@ using System.Collections.Generic;
 
 namespace FoodDeliveryListImplement.Implements
 {
-    public class ClientStorage
+    public class ClientStorage : IClientStorage
     {
         private readonly DataListSingleton source;
 

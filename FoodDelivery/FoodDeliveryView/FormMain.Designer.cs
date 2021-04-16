@@ -33,17 +33,17 @@ namespace FoodDeliveryView
             this.directoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dishesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.отчетыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокБлюдToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.блюдаПоНаборамToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокЗаказовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewOrders = new System.Windows.Forms.DataGridView();
             this.buttonCreateOrder = new System.Windows.Forms.Button();
-            this.buttonTakeOrderInWork = new System.Windows.Forms.Button();
-            this.buttonOrderReady = new System.Windows.Forms.Button();
             this.buttonPayOrder = new System.Windows.Forms.Button();
             this.buttonRef = new System.Windows.Forms.Button();
-            this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.исполнителиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.запускРаботToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFoodDelivery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,8 @@ namespace FoodDeliveryView
             // 
             this.menuStripFoodDelivery.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.directoriesToolStripMenuItem,
-            this.отчетыToolStripMenuItem});
+            this.отчетыToolStripMenuItem,
+            this.запускРаботToolStripMenuItem});
             this.menuStripFoodDelivery.Location = new System.Drawing.Point(0, 0);
             this.menuStripFoodDelivery.Name = "menuStripFoodDelivery";
             this.menuStripFoodDelivery.Size = new System.Drawing.Size(945, 24);
@@ -64,7 +65,8 @@ namespace FoodDeliveryView
             this.directoriesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dishesToolStripMenuItem,
             this.setsToolStripMenuItem,
-            this.клиентыToolStripMenuItem});
+            this.клиентыToolStripMenuItem,
+            this.исполнителиToolStripMenuItem});
             this.directoriesToolStripMenuItem.Name = "directoriesToolStripMenuItem";
             this.directoriesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.directoriesToolStripMenuItem.Text = "Справочники";
@@ -72,16 +74,23 @@ namespace FoodDeliveryView
             // dishesToolStripMenuItem
             // 
             this.dishesToolStripMenuItem.Name = "dishesToolStripMenuItem";
-            this.dishesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dishesToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.dishesToolStripMenuItem.Text = "Блюда";
             this.dishesToolStripMenuItem.Click += new System.EventHandler(this.DishesToolStripMenuItem_Click);
             // 
             // setsToolStripMenuItem
             // 
             this.setsToolStripMenuItem.Name = "setsToolStripMenuItem";
-            this.setsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.setsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.setsToolStripMenuItem.Text = "Наборы";
             this.setsToolStripMenuItem.Click += new System.EventHandler(this.SetsToolStripMenuItem_Click);
+            // 
+            // клиентыToolStripMenuItem
+            // 
+            this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.клиентыToolStripMenuItem.Text = "Клиенты";
+            this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // отчетыToolStripMenuItem
             // 
@@ -134,29 +143,9 @@ namespace FoodDeliveryView
             this.buttonCreateOrder.UseVisualStyleBackColor = true;
             this.buttonCreateOrder.Click += new System.EventHandler(this.ButtonCreateOrder_Click);
             // 
-            // buttonTakeOrderInWork
-            // 
-            this.buttonTakeOrderInWork.Location = new System.Drawing.Point(771, 90);
-            this.buttonTakeOrderInWork.Name = "buttonTakeOrderInWork";
-            this.buttonTakeOrderInWork.Size = new System.Drawing.Size(148, 25);
-            this.buttonTakeOrderInWork.TabIndex = 3;
-            this.buttonTakeOrderInWork.Text = "Отдать на выполнение";
-            this.buttonTakeOrderInWork.UseVisualStyleBackColor = true;
-            this.buttonTakeOrderInWork.Click += new System.EventHandler(this.ButtonTakeOrderInWork_Click);
-            // 
-            // buttonOrderReady
-            // 
-            this.buttonOrderReady.Location = new System.Drawing.Point(771, 136);
-            this.buttonOrderReady.Name = "buttonOrderReady";
-            this.buttonOrderReady.Size = new System.Drawing.Size(148, 25);
-            this.buttonOrderReady.TabIndex = 4;
-            this.buttonOrderReady.Text = "Заказ готов";
-            this.buttonOrderReady.UseVisualStyleBackColor = true;
-            this.buttonOrderReady.Click += new System.EventHandler(this.ButtonOrderReady_Click);
-            // 
             // buttonPayOrder
             // 
-            this.buttonPayOrder.Location = new System.Drawing.Point(771, 182);
+            this.buttonPayOrder.Location = new System.Drawing.Point(771, 183);
             this.buttonPayOrder.Name = "buttonPayOrder";
             this.buttonPayOrder.Size = new System.Drawing.Size(148, 25);
             this.buttonPayOrder.TabIndex = 5;
@@ -174,12 +163,19 @@ namespace FoodDeliveryView
             this.buttonRef.UseVisualStyleBackColor = true;
             this.buttonRef.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
-            // клиентыToolStripMenuItem
+            // исполнителиToolStripMenuItem
             // 
-            this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
-            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.клиентыToolStripMenuItem.Text = "Клиенты";
-            this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
+            this.исполнителиToolStripMenuItem.Name = "исполнителиToolStripMenuItem";
+            this.исполнителиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.исполнителиToolStripMenuItem.Text = "Исполнители";
+            this.исполнителиToolStripMenuItem.Click += new System.EventHandler(this.implementersToolStripMenuItem_Click);
+            // 
+            // запускРаботToolStripMenuItem
+            // 
+            this.запускРаботToolStripMenuItem.Name = "запускРаботToolStripMenuItem";
+            this.запускРаботToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.запускРаботToolStripMenuItem.Text = "Запуск работ";
+            this.запускРаботToolStripMenuItem.Click += new System.EventHandler(this.запускРаботToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -188,8 +184,6 @@ namespace FoodDeliveryView
             this.ClientSize = new System.Drawing.Size(945, 291);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonPayOrder);
-            this.Controls.Add(this.buttonOrderReady);
-            this.Controls.Add(this.buttonTakeOrderInWork);
             this.Controls.Add(this.buttonCreateOrder);
             this.Controls.Add(this.dataGridViewOrders);
             this.Controls.Add(this.menuStripFoodDelivery);
@@ -213,8 +207,6 @@ namespace FoodDeliveryView
         private System.Windows.Forms.ToolStripMenuItem setsToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridViewOrders;
         private System.Windows.Forms.Button buttonCreateOrder;
-        private System.Windows.Forms.Button buttonTakeOrderInWork;
-        private System.Windows.Forms.Button buttonOrderReady;
         private System.Windows.Forms.Button buttonPayOrder;
         private System.Windows.Forms.Button buttonRef;
         private System.Windows.Forms.ToolStripMenuItem отчетыToolStripMenuItem;
@@ -222,5 +214,7 @@ namespace FoodDeliveryView
         private System.Windows.Forms.ToolStripMenuItem блюдаПоНаборамToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem списокЗаказовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem исполнителиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem запускРаботToolStripMenuItem;
     }
 }

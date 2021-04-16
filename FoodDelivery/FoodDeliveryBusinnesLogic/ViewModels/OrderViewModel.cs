@@ -42,6 +42,13 @@ namespace FoodDeliveryBusinnesLogic.ViewModels
         public DateTime DateCreate { get; set; }
 
         [DataMember]
+        public int? ImplementerId { get; set; }
+
+        [DataMember]
+        [DisplayName("Исполнитель")]
+        public string ImplementerFIO { get; set; }
+
+        [DataMember]
         [DisplayName("Дата выполнения")]
         public DateTime? DateImplement { get; set; }
     }
