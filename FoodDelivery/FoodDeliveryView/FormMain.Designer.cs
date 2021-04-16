@@ -56,7 +56,7 @@ namespace FoodDeliveryView
             this.запускРаботToolStripMenuItem});
             this.menuStripFoodDelivery.Location = new System.Drawing.Point(0, 0);
             this.menuStripFoodDelivery.Name = "menuStripFoodDelivery";
-            this.menuStripFoodDelivery.Size = new System.Drawing.Size(945, 24);
+            this.menuStripFoodDelivery.Size = new System.Drawing.Size(1071, 24);
             this.menuStripFoodDelivery.TabIndex = 0;
             this.menuStripFoodDelivery.Text = "menuStripFoodDelivery";
             // 
@@ -130,12 +130,12 @@ namespace FoodDeliveryView
             this.dataGridViewOrders.Location = new System.Drawing.Point(0, 26);
             this.dataGridViewOrders.Name = "dataGridViewOrders";
             this.dataGridViewOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOrders.Size = new System.Drawing.Size(745, 265);
+            this.dataGridViewOrders.Size = new System.Drawing.Size(873, 265);
             this.dataGridViewOrders.TabIndex = 1;
             // 
             // buttonCreateOrder
             // 
-            this.buttonCreateOrder.Location = new System.Drawing.Point(771, 46);
+            this.buttonCreateOrder.Location = new System.Drawing.Point(898, 42);
             this.buttonCreateOrder.Name = "buttonCreateOrder";
             this.buttonCreateOrder.Size = new System.Drawing.Size(148, 25);
             this.buttonCreateOrder.TabIndex = 2;
@@ -145,7 +145,7 @@ namespace FoodDeliveryView
             // 
             // buttonPayOrder
             // 
-            this.buttonPayOrder.Location = new System.Drawing.Point(771, 183);
+            this.buttonPayOrder.Location = new System.Drawing.Point(898, 179);
             this.buttonPayOrder.Name = "buttonPayOrder";
             this.buttonPayOrder.Size = new System.Drawing.Size(148, 25);
             this.buttonPayOrder.TabIndex = 5;
@@ -155,7 +155,7 @@ namespace FoodDeliveryView
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(771, 229);
+            this.buttonRef.Location = new System.Drawing.Point(898, 225);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(148, 25);
             this.buttonRef.TabIndex = 6;
@@ -181,7 +181,7 @@ namespace FoodDeliveryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 291);
+            this.ClientSize = new System.Drawing.Size(1071, 291);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonPayOrder);
             this.Controls.Add(this.buttonCreateOrder);
