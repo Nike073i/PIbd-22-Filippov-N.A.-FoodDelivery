@@ -38,7 +38,7 @@ namespace FoodDeliveryFileImplement
         {
             SaveDishes();
             SaveOrders();
-            SaveProducts();
+            SaveSets();
             SaveClients();
         }
         private List<Dish> LoadDishes()
@@ -72,12 +72,13 @@ namespace FoodDeliveryFileImplement
                     {
                         Id = Convert.ToInt32(elem.Attribute("Id").Value),
                         SetId = Convert.ToInt32(elem.Element("SetId").Value),
+                        ClientId = Convert.ToInt32(elem.Element("ClientId").Value),
                         Count = Convert.ToInt32(elem.Element("Count").Value),
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
                         DateImplement = string.IsNullOrEmpty(elem.Element("DateImplement").Value) ? (DateTime?)null :
-                        Convert.ToDateTime(elem.Element("DateImplement").Value),
+                        Convert.ToDateTime(elem.Element("DateImplement").Value)
                     });
                 }
             }
@@ -154,6 +155,7 @@ namespace FoodDeliveryFileImplement
                     xElement.Add(new XElement("Order",
                     new XAttribute("Id", order.Id),
                     new XElement("SetId", order.SetId),
+                    new XElement("ClientId", order.ClientId),
                     new XElement("Count", order.Count),
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
@@ -164,7 +166,7 @@ namespace FoodDeliveryFileImplement
                 xDocument.Save(OrderFileName);
             }
         }
-        private void SaveProducts()
+        private void SaveSets()
         {
             if (Sets != null)
             {
