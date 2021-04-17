@@ -59,8 +59,7 @@ namespace FoodDeliveryClientApp.Controllers
         {
             return View(new ErrorViewModel
             {
-                RequestId = Activity.Current?.Id ??
-            HttpContext.TraceIdentifier
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
             });
         }
         [HttpGet]
@@ -94,8 +93,7 @@ namespace FoodDeliveryClientApp.Controllers
             if (!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)
             && !string.IsNullOrEmpty(fio))
             {
-                APIClient.PostRequest("api/client/register", new
-                ClientBindingModel
+                APIClient.PostRequest("api/client/register", new ClientBindingModel
                 {
                     ClientFIO = fio,
                     Email = login,
