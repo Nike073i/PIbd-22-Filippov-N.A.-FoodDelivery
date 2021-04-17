@@ -30,11 +30,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
 
         public void CreateOrUpdate(ClientBindingModel model)
         {
-            var element = _clientStorage.GetElement(new ClientBindingModel
+            var client = _clientStorage.GetElement(new ClientBindingModel
             {
                 Email = model.Email
             });
-            if (element != null && element.Id != model.Id)
+            if (client != null && client.Id != model.Id)
             {
                 throw new Exception("Уже есть клиент с такой почтой");
             }
@@ -49,11 +49,11 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         }
         public void Delete(ClientBindingModel model)
         {
-            var element = _clientStorage.GetElement(new ClientBindingModel
+            var client = _clientStorage.GetElement(new ClientBindingModel
             {
                 Id = model.Id
             });
-            if (element == null)
+            if (client == null)
             {
                 throw new Exception("Клиент не найден");
             }
