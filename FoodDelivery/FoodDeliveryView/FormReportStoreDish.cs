@@ -14,7 +14,7 @@ namespace FoodDeliveryView
 
         public FormReportStoreDish(ReportLogic logic)
         {
-            InitializeComponent(); 
+            InitializeComponent();
             this.logic = logic;
         }
         private void FormReportStoreDishes_Load(object sender, EventArgs e)

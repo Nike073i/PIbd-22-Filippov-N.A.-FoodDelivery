@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FoodDeliveryBusinnesLogic.HelperModels
 {
-    class ExcelStoreInfo
+    public class ExcelStoreInfo
     {
         public string FileName { get; set; }
         public string Title { get; set; }

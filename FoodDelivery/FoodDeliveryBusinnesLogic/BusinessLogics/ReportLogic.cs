@@ -155,7 +155,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             });
         }
 
-        /// Сохранение заказов в файл-Pdf
+        /// Сохранение заказов по датам в файл-Pdf
         public void SaveOrdersByDateToPdfFile(ReportBindingModel model)
         {
             SaveToPdf.CreateOrdersByDateDoc(new PdfOrdersByDateInfo

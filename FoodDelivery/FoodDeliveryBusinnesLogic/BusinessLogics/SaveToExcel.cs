@@ -190,7 +190,8 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                             RowIndex = rowIndex,
                             Text = dish.Item2.ToString(),
                             StyleIndex = 1U
-                        }); rowIndex++;
+                        });
+                        rowIndex++;
                     }
                     InsertCellInWorksheet(new ExcelCellParameters
                     {
