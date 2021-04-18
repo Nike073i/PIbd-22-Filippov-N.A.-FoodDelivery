@@ -8,6 +8,7 @@ namespace FoodDeliveryDatabaseImplement.Models
     {
         public int Id { get; set; }
         public int SetId { get; set; }
+        public int ClientId { get; set; }
 
         [Required]
         public int Count { get; set; }
@@ -23,5 +24,6 @@ namespace FoodDeliveryDatabaseImplement.Models
         public DateTime? DateImplement { get; set; }
 
         public virtual Set Set { get; set; }
+        public virtual Client Client { get; set; }
     }
 }
