@@ -234,7 +234,7 @@ namespace FoodDeliveryFileImplement
                     new XElement("Password", client.Password)));
                 }
                 XDocument xDocument = new XDocument(xElement);
-                xDocument.Save(DishFileName);
+                xDocument.Save(ClientFileName);
             }
         }
 

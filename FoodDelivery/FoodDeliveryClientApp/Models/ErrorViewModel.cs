@@ -1,5 +1,3 @@
-using System;
-
 namespace FoodDeliveryClientApp.Models
 {
     public class ErrorViewModel

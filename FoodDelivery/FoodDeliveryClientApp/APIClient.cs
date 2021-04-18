@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -25,12 +24,12 @@ namespace FoodDeliveryClientApp
             if (response.Result.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<T>(result);
-        }
+            }
             else
             {
                 throw new Exception(result);
-    }
-}
+            }
+        }
         public static void PostRequest<T>(string requestUrl, T model)
         {
             var json = JsonConvert.SerializeObject(model);

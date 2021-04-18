@@ -103,7 +103,7 @@ namespace FoodDeliveryListImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
-            order.ClientId = model.ClientId.GetValueOrDefault();
+            order.ClientId = (int)model.ClientId;
             order.SetId = model.SetId;
             order.Count = model.Count;
             order.Sum = model.Sum;

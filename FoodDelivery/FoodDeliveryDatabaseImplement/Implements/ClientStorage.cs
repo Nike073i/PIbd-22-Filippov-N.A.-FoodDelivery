@@ -42,7 +42,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                     Email = rec.Email,
                     Password = rec.Password
                 })
-                .ToList();  
+                .ToList();
             }
         }
 
@@ -63,8 +63,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                     ClientFIO = client.ClientFIO,
                     Email = client.Email,
                     Password = client.Password
-                } :
-                null;
+                } : null;
             }
         }
 
@@ -81,8 +80,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
         {
             using (var context = new FoodDeliveryDatabase())
             {
-                var client = context.Clients.FirstOrDefault(rec => rec.Id ==
-                model.Id);
+                var client = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
                 if (client == null)
                 {
                     throw new Exception("Клиент не найден");
@@ -96,8 +94,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
         {
             using (var context = new FoodDeliveryDatabase())
             {
-                var client = context.Clients.FirstOrDefault(rec => rec.Id ==
-                model.Id);
+                var client = context.Clients.FirstOrDefault(rec => rec.Id == model.Id);
                 if (client != null)
                 {
                     context.Clients.Remove(client);

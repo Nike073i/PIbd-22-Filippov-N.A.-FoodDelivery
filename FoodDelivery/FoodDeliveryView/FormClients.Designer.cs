@@ -32,8 +32,6 @@ namespace FoodDeliveryView
             this.dataGridViewClients = new System.Windows.Forms.DataGridView();
             this.buttonRef = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
-            this.buttonUpd = new System.Windows.Forms.Button();
-            this.buttonAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClients)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +48,7 @@ namespace FoodDeliveryView
             // 
             // buttonRef
             // 
-            this.buttonRef.Location = new System.Drawing.Point(452, 155);
+            this.buttonRef.Location = new System.Drawing.Point(452, 60);
             this.buttonRef.Name = "buttonRef";
             this.buttonRef.Size = new System.Drawing.Size(116, 27);
             this.buttonRef.TabIndex = 8;
@@ -60,33 +58,13 @@ namespace FoodDeliveryView
             // 
             // buttonDel
             // 
-            this.buttonDel.Location = new System.Drawing.Point(452, 107);
+            this.buttonDel.Location = new System.Drawing.Point(452, 12);
             this.buttonDel.Name = "buttonDel";
             this.buttonDel.Size = new System.Drawing.Size(116, 27);
             this.buttonDel.TabIndex = 7;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
             this.buttonDel.Click += new System.EventHandler(this.ButtonDel_Click);
-            // 
-            // buttonUpd
-            // 
-            this.buttonUpd.Location = new System.Drawing.Point(452, 61);
-            this.buttonUpd.Name = "buttonUpd";
-            this.buttonUpd.Size = new System.Drawing.Size(116, 27);
-            this.buttonUpd.TabIndex = 6;
-            this.buttonUpd.Text = "Изменить";
-            this.buttonUpd.UseVisualStyleBackColor = true;
-            this.buttonUpd.Click += new System.EventHandler(this.ButtonUpd_Click);
-            // 
-            // buttonAdd
-            // 
-            this.buttonAdd.Location = new System.Drawing.Point(452, 16);
-            this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(116, 27);
-            this.buttonAdd.TabIndex = 5;
-            this.buttonAdd.Text = "Добавить";
-            this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // FormClients
             // 
@@ -95,8 +73,6 @@ namespace FoodDeliveryView
             this.ClientSize = new System.Drawing.Size(580, 517);
             this.Controls.Add(this.buttonRef);
             this.Controls.Add(this.buttonDel);
-            this.Controls.Add(this.buttonUpd);
-            this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.dataGridViewClients);
             this.Name = "FormClients";
             this.Text = "Клиенты";
@@ -111,7 +87,5 @@ namespace FoodDeliveryView
         private System.Windows.Forms.DataGridView dataGridViewClients;
         private System.Windows.Forms.Button buttonRef;
         private System.Windows.Forms.Button buttonDel;
-        private System.Windows.Forms.Button buttonUpd;
-        private System.Windows.Forms.Button buttonAdd;
     }
 }
