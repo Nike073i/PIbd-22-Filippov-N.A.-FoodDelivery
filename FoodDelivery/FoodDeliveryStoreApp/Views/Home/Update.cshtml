@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Изменить склад";
+}
+<div class="text-center">
+    <h2 class="display-4">Изменение склада</h2>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-4">Склад:</div>
+        <div class="col-8">
+            <select id="store" name="store" class="form-control" asp-items="@(new SelectList(@ViewBag.Stores,"Id", "StoreName"))"></select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">Название:</div>
+        <div class="col-8"><input type="text" name="storeName" id="count" /></div>
+    </div>
+    <div class="row">
+        <div class="col-4">Ответственный:</div>
+        <div class="col-8"><input type="text" name="fullNameResponsible" id="count" /></div>
+    </div>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4"><input type="submit" value="Создать" class="btn btnprimary" /></div>
+    </div>
+</form>
