@@ -13,17 +13,13 @@ namespace FoodDeliveryRestApi.Controllers
     {
         private readonly OrderLogic _order;
         private readonly SetLogic _set;
-        private readonly DishLogic _dish;
-        public MainController(OrderLogic order, SetLogic set, DishLogic dish)
+        public MainController(OrderLogic order, SetLogic set)
         {
             _order = order;
             _set = set;
-            _dish = dish;
         }
         [HttpGet]
         public List<SetViewModel> GetSetList() => _set.Read(null)?.ToList();
-        [HttpGet]
-        public List<DishViewModel> GetDishList() => _dish.Read(null);
         [HttpGet]
         public SetViewModel GetSet(int setId) => _set.Read(new SetBindingModel
         {

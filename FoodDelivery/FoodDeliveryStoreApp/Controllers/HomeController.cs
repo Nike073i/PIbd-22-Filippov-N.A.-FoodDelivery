@@ -26,17 +26,16 @@ namespace FoodDeliveryStoreApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Update()
+        public IActionResult Update(int id)
         {
             if (!Program.authorized)
             {
                 return Redirect("~/Home/Enter");
             }
-            ViewBag.Stores = APIClient.GetRequest<List<StoreViewModel>>("api/store/getstorelist");
-            return View();
+            return View(APIClient.GetRequest<StoreViewModel>($"api/store/getstore?storeId={id}"));
         }
         [HttpPost]
-        public void Update(int store, string storeName, string fullNameResponsible)
+        public IActionResult UpdateAction(int store, string storeName, string fullNameResponsible)
         {
             if (!string.IsNullOrEmpty(storeName) && !string.IsNullOrEmpty(fullNameResponsible))
             {
@@ -47,12 +46,11 @@ namespace FoodDeliveryStoreApp.Controllers
                     StoreName = storeName,
                     FullNameResponsible = fullNameResponsible,
                     CreationDate = currentStore.CreationDate,
-                    StoreDishes = currentStore.StoreDishes,
+                    StoreDishes = currentStore.StoreDishes
                 });
-                Response.Redirect("Index");
-                return;
+                return Redirect("~/Home/Index");
             }
-            throw new Exception("Выберите склад, введите название и ФИО ответственного");
+            throw new Exception("Введите название и ФИО ответственного");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore
@@ -71,7 +69,7 @@ namespace FoodDeliveryStoreApp.Controllers
             return View();
         }
         [HttpPost]
-        public void Enter(string password)
+        public void EnterAction(string password)
         {
             if (!string.IsNullOrEmpty(password))
             {
@@ -95,7 +93,7 @@ namespace FoodDeliveryStoreApp.Controllers
             return View();
         }
         [HttpPost]
-        public void Create(string storeName, string fullNameResponsible)
+        public void CreateAction(string storeName, string fullNameResponsible)
         {
             if (!string.IsNullOrEmpty(storeName) && !string.IsNullOrEmpty(fullNameResponsible))
             {
@@ -112,26 +110,22 @@ namespace FoodDeliveryStoreApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
             if (!Program.authorized)
             {
                 return Redirect("~/Home/Enter");
             }
-            ViewBag.Stores = APIClient.GetRequest<List<StoreViewModel>>("api/store/getstorelist");
-            return View();
+            return View(APIClient.GetRequest<StoreViewModel>($"api/store/getstore?storeId={id}"));
         }
         [HttpPost]
-        public void Delete(int store)
+        public IActionResult DeleteAction(int store)
         {
-            if (store > 0)
+            APIClient.PostRequest("api/store/deletestore", new StoreBindingModel
             {
-                APIClient.PostRequest("api/store/deletestore", new StoreBindingModel
-                {
-                    Id = store,
-                });
-            }
-            Response.Redirect("Index");
+                Id = store,
+            });
+            return Redirect("~/Home/Index");
         }
 
         [HttpGet]
@@ -142,11 +136,11 @@ namespace FoodDeliveryStoreApp.Controllers
                 return Redirect("~/Home/Enter");
             }
             ViewBag.Stores = APIClient.GetRequest<List<StoreViewModel>>("api/store/getstorelist");
-            ViewBag.Dishes = APIClient.GetRequest<List<DishViewModel>>("api/main/getdishlist");
+            ViewBag.Dishes = APIClient.GetRequest<List<DishViewModel>>("api/store/getdishlist");
             return View();
         }
         [HttpPost]
-        public void Replenisment(int store, int dish, int count)
+        public IActionResult ReplenismentAction(int store, int dish, int count)
         {
             if (store > 0 && dish > 0 && count > 0)
             {
@@ -157,7 +151,7 @@ namespace FoodDeliveryStoreApp.Controllers
                     Count = count
                 });
             }
-            Response.Redirect("Index");
+            return Redirect("~/Home/Index");
         }
     }
 }

@@ -1,15 +1,19 @@
-﻿@{
+﻿@model FoodDeliveryBusinnesLogic.ViewModels.StoreViewModel
+@{
     ViewData["Title"] = "Удалить склад";
 }
 <div class="text-center">
     <h2 class="display-4">Удаление склада</h2>
 </div>
-<form method="post">
+<form method="post" asp-action="DeleteAction">
+    <input type="hidden" name="store" value="@Model.Id" />
     <div class="row">
-        <div class="col-4">Склад:</div>
-        <div class="col-8">
-            <select id="store" name="store" class="form-control" asp-items="@(new SelectList(@ViewBag.Stores,"Id", "StoreName"))"></select>
-        </div>
+        <div class="col-4">Название:</div>
+        <div class="col-4">@Html.DisplayFor(model => model.StoreName)</div>
+    </div>
+    <div class="row">
+        <div class="col-4">Ответственный:</div>
+        <div class="col-8"> @Html.DisplayFor(model => model.FullNameResponsible)</div>
     </div>
     <div class="row">
         <div class="col-8"></div>

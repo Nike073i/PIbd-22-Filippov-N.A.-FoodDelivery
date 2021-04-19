@@ -13,6 +13,9 @@
             <h3 class="display-4">Авторизируйтесь</h3>
             return;
         }
+        <p>
+            <a asp-action="Create">Создать склад</a>
+        </p>
         <table class="table">
             <thead>
                 <tr>
@@ -33,23 +36,28 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem =>
-                        item.StoreName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem =>
-                        item.FullNameResponsible)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem =>
-                        item.CreationDate)
-                    </td>
-                </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.StoreName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.FullNameResponsible)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.CreationDate)
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Обновить</a>
+                            или
+                            <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

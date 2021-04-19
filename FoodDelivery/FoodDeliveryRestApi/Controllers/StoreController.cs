@@ -10,23 +10,27 @@ namespace FoodDeliveryRestApi.Controllers
     [ApiController]
     public class StoreController : ControllerBase
     {
-        private readonly StoreLogic logic;
-        public StoreController(StoreLogic logic)
+        private readonly StoreLogic logicS;
+        private readonly DishLogic logicD;
+        public StoreController(StoreLogic logicS, DishLogic logicD)
         {
-            this.logic = logic;
+            this.logicS = logicS;
+            this.logicD = logicD;
         }
         [HttpGet]
-        public List<StoreViewModel> GetStoreList() => logic.Read(null);
+        public List<StoreViewModel> GetStoreList() => logicS.Read(null);
         [HttpGet]
-        public StoreViewModel GetStore(int storeId) => logic.Read(new StoreBindingModel
+        public StoreViewModel GetStore(int storeId) => logicS.Read(new StoreBindingModel
         {
             Id = storeId
         })?[0];
+        [HttpGet]
+        public List<DishViewModel> GetDishList() => logicD.Read(null);
         [HttpPost]
-        public void DeleteStore(StoreBindingModel model) => logic.Delete(model);
+        public void DeleteStore(StoreBindingModel model) => logicS.Delete(model);
         [HttpPost]
-        public void CreateOrUpdateStore(StoreBindingModel model) => logic.CreateOrUpdate(model);
+        public void CreateOrUpdateStore(StoreBindingModel model) => logicS.CreateOrUpdate(model);
         [HttpPost]
-        public void AddDishesToStore(AddDishesToStoreBindingModel model) => logic.AddDishes(model);
+        public void AddDishesToStore(AddDishesToStoreBindingModel model) => logicS.AddDishes(model);
     }
 }
