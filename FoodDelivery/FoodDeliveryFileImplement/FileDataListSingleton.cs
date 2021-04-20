@@ -38,7 +38,7 @@ namespace FoodDeliveryFileImplement
         {
             SaveDishes();
             SaveOrders();
-            SaveProducts();
+            SaveSets();
             SaveStores();
         }
         private List<Dish> LoadDishes()
@@ -171,7 +171,7 @@ namespace FoodDeliveryFileImplement
                 xDocument.Save(OrderFileName);
             }
         }
-        private void SaveProducts()
+        private void SaveSets()
         {
             if (Sets != null)
             {

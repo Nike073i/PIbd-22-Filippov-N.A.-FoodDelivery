@@ -33,6 +33,7 @@ namespace FoodDeliveryView
             currentContainer.RegisterType<OrderLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<SetLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<StoreLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
