@@ -21,7 +21,6 @@ namespace FoodDeliveryClientApp.Controllers
             }
             return
             View(APIClient.GetRequest<List<OrderViewModel>>($"api/main/getorders?clientId={Program.Client.Id}"));
-
         }
         [HttpGet]
         public IActionResult Privacy()
@@ -32,6 +31,18 @@ namespace FoodDeliveryClientApp.Controllers
             }
             return View(Program.Client);
         }
+
+        [HttpGet]
+        public IActionResult Mail()
+        {
+            if (Program.Client == null)
+            {
+                return Redirect("~/Home/Enter");
+            }
+            var model = APIClient.GetRequest<List<MessageInfoViewModel>>($"api/client/getmessages?clientId={Program.Client.Id}");
+            return View(model);
+        }
+
         [HttpPost]
         public void Privacy(string login, string password, string fio)
         {
