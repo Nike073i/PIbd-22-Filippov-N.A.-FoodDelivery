@@ -4,14 +4,16 @@ using FoodDeliveryDatabaseImplement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodDeliveryDatabaseImplement.Migrations
 {
     [DbContext(typeof(FoodDeliveryDatabase))]
-    partial class FoodDeliveryDatabaseModelSnapshot : ModelSnapshot
+    [Migration("20210416210528_Add implementers")]
+    partial class Addimplementers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -167,54 +169,6 @@ namespace FoodDeliveryDatabaseImplement.Migrations
                     b.ToTable("SetDishes");
                 });
 
-            modelBuilder.Entity("FoodDeliveryDatabaseImplement.Models.Store", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FullNameResponsible")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StoreName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Stores");
-                });
-
-            modelBuilder.Entity("FoodDeliveryDatabaseImplement.Models.StoreDish", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DishId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StoreId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DishId");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("StoreDishes");
-                });
-
             modelBuilder.Entity("FoodDeliveryDatabaseImplement.Models.Order", b =>
                 {
                     b.HasOne("FoodDeliveryDatabaseImplement.Models.Client", "Client")
@@ -245,21 +199,6 @@ namespace FoodDeliveryDatabaseImplement.Migrations
                     b.HasOne("FoodDeliveryDatabaseImplement.Models.Set", "Set")
                         .WithMany("SetDishes")
                         .HasForeignKey("SetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("FoodDeliveryDatabaseImplement.Models.StoreDish", b =>
-                {
-                    b.HasOne("FoodDeliveryDatabaseImplement.Models.Dish", "Dish")
-                        .WithMany("StoreDishes")
-                        .HasForeignKey("DishId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FoodDeliveryDatabaseImplement.Models.Store", "Store")
-                        .WithMany("StoreDishes")
-                        .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

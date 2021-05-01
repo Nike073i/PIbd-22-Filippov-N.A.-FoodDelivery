@@ -29,6 +29,9 @@ namespace FoodDeliveryBusinnesLogic.BindingModels
         public DateTime DateCreate { get; set; }
 
         [DataMember]
+        public int? ImplementerId { get; set; }
+
+        [DataMember]
         public DateTime? DateImplement { get; set; }
 
         [DataMember]
@@ -36,5 +39,8 @@ namespace FoodDeliveryBusinnesLogic.BindingModels
 
         [DataMember]
         public DateTime? DateTo { get; set; }
+
+        [DataMember]
+        public bool? FreeOrders { get; set; }
     }
 }

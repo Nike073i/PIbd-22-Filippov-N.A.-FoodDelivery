@@ -1,4 +1,5 @@
 ﻿using FoodDeliveryBusinnesLogic.BindingModels;
+using FoodDeliveryBusinnesLogic.Enums;
 using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using FoodDeliveryFileImplement.Models;
@@ -25,8 +26,10 @@ namespace FoodDeliveryFileImplement.Implements
             return source.Orders.Where(rec => rec.SetId.Equals(model.SetId)
                     || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
                     || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
-                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
-                .Select(CreateModel).ToList();
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value && !rec.ImplementerId.HasValue)
+                    || (model.ImplementerId.HasValue && rec.ImplementerId == model.ImplementerId && rec.Status == OrderStatus.Выполняется))
+            .Select(CreateModel).ToList();
         }
         public OrderViewModel GetElement(OrderBindingModel model)
         {
@@ -72,6 +75,7 @@ namespace FoodDeliveryFileImplement.Implements
             order.Sum = model.Sum;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
+            order.ImplementerId = model.ImplementerId.GetValueOrDefault();
             order.DateImplement = model.DateImplement;
             return order;
         }
@@ -81,6 +85,8 @@ namespace FoodDeliveryFileImplement.Implements
             string setName = set?.SetName;
             var client = source.Clients.FirstOrDefault(rec => rec.Id == order.ClientId);
             string clientFIO = client?.ClientFIO;
+            var implementer = source.Implementers.FirstOrDefault(rec => rec.Id == order.ImplementerId);
+            string implementerFIO = implementer?.ImplementerFIO;
             return new OrderViewModel
             {
                 Id = order.Id,
@@ -92,6 +98,8 @@ namespace FoodDeliveryFileImplement.Implements
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
                 Status = order.Status,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 DateImplement = order.DateImplement
             };
         }

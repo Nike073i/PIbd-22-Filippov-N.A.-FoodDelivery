@@ -15,12 +15,15 @@ namespace FoodDeliveryFileImplement
         private readonly string OrderFileName = "Order.xml";
         private readonly string SetFileName = "Set.xml";
         private readonly string ClientFileName = "Client.xml";
+        private readonly string ImplementerFileName = "Implementer.xml";
         private readonly string StoreFileName = "Store.xml";
         public List<Dish> Dishes { get; set; }
         public List<Order> Orders { get; set; }
         public List<Set> Sets { get; set; }
         public List<Store> Stores { get; set; }
         public List<Client> Clients { get; set; }
+        public List<Implementer> Implementers { get; set; }
+
         private FileDataListSingleton()
         {
             Dishes = LoadDishes();
@@ -28,6 +31,7 @@ namespace FoodDeliveryFileImplement
             Sets = LoadSets();
             Clients = LoadClients();
             Stores = LoadStores();
+            Implementers = LoadImplementers();
         }
         public static FileDataListSingleton GetInstance()
         {
@@ -44,6 +48,7 @@ namespace FoodDeliveryFileImplement
             SaveSets();
             SaveStores();
             SaveClients();
+            SaveImplementers();
         }
         private List<Dish> LoadDishes()
         {
@@ -81,6 +86,7 @@ namespace FoodDeliveryFileImplement
                         Sum = Convert.ToDecimal(elem.Element("Sum").Value),
                         Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), elem.Element("Status").Value),
                         DateCreate = Convert.ToDateTime(elem.Element("DateCreate").Value),
+                        ImplementerId = Convert.ToInt32(elem.Element("ImplementerId").Value),
                         DateImplement = string.IsNullOrEmpty(elem.Element("DateImplement").Value) ? (DateTime?)null :
                         Convert.ToDateTime(elem.Element("DateImplement").Value)
                     });
@@ -128,6 +134,27 @@ namespace FoodDeliveryFileImplement
                         ClientFIO = elem.Element("ClientFIO").Value,
                         Email = elem.Element("Email").Value,
                         Password = elem.Element("Password").Value
+                    });
+                }
+            }
+            return list;
+        }
+
+        private List<Implementer> LoadImplementers()
+        {
+            var list = new List<Implementer>();
+            if (File.Exists(ClientFileName))
+            {
+                XDocument xDocument = XDocument.Load(ClientFileName);
+                var xElements = xDocument.Root.Elements("Implementer").ToList();
+                foreach (var elem in xElements)
+                {
+                    list.Add(new Implementer
+                    {
+                        Id = Convert.ToInt32(elem.Attribute("Id").Value),
+                        ImplementerFIO = elem.Element("ImplementerFIO").Value,
+                        WorkingTime = Convert.ToInt32(elem.Element("WorkingTime").Value),
+                        PauseTime = Convert.ToInt32(elem.Element("PauseTime").Value),
                     });
                 }
             }
@@ -191,6 +218,7 @@ namespace FoodDeliveryFileImplement
                     new XElement("Sum", order.Sum),
                     new XElement("Status", order.Status),
                     new XElement("DateCreate", order.DateCreate),
+                    new XElement("ImplementerId", order.ImplementerId),
                     new XElement("DateImplement", order.DateImplement)));
                 }
                 XDocument xDocument = new XDocument(xElement);
@@ -262,6 +290,24 @@ namespace FoodDeliveryFileImplement
                 }
                 XDocument xDocument = new XDocument(xElement);
                 xDocument.Save(StoreFileName);
+            }
+        }
+
+        private void SaveImplementers()
+        {
+            if (Implementers != null)
+            {
+                var xElement = new XElement("Implementers");
+                foreach (var implementer in Implementers)
+                {
+                    xElement.Add(new XElement("Implementer",
+                    new XAttribute("Id", implementer.Id),
+                    new XElement("ImplementerFIO", implementer.ImplementerFIO),
+                    new XElement("WorkingTime", implementer.WorkingTime),
+                    new XElement("PauseTime", implementer.PauseTime)));
+                }
+                XDocument xDocument = new XDocument(xElement);
+                xDocument.Save(ImplementerFileName);
             }
         }
     }

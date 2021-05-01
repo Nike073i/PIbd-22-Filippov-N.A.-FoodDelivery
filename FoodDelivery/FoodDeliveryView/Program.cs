@@ -29,6 +29,8 @@ namespace FoodDeliveryView
             currentContainer.RegisterType<IOrderStorage, OrderStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ISetStorage, SetStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IClientStorage, ClientStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IImplementerStorage, ImplementerStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<WorkModeling>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ClientLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<IStoreStorage, StoreStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<DishLogic>(new HierarchicalLifetimeManager());

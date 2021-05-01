@@ -1,4 +1,5 @@
 ﻿using FoodDeliveryBusinnesLogic.BindingModels;
+using FoodDeliveryBusinnesLogic.Enums;
 using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using FoodDeliveryListImplement.Models;
@@ -36,7 +37,9 @@ namespace FoodDeliveryListImplement.Implements
                 if (order.SetId.Equals(model.SetId)
                     || (!model.DateFrom.HasValue && !model.DateTo.HasValue && order.DateCreate.Date == model.DateCreate.Date)
                     || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
-                    || (model.ClientId.HasValue && order.ClientId == model.ClientId))
+                    || (model.ClientId.HasValue && order.ClientId == model.ClientId)
+                    || (model.FreeOrders.HasValue && model.FreeOrders.Value && !order.ImplementerId.HasValue)
+                    || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
                 {
                     result.Add(CreateModel(order));
                 }
@@ -106,6 +109,7 @@ namespace FoodDeliveryListImplement.Implements
             order.Sum = model.Sum;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
+            order.ImplementerId = model.ClientId.GetValueOrDefault();
             order.DateImplement = model.DateImplement;
             return order;
         }
@@ -127,6 +131,14 @@ namespace FoodDeliveryListImplement.Implements
                     clientFIO = client.ClientFIO;
                 }
             }
+            string implementerFIO = null;
+            foreach (var implementer in source.Implementers)
+            {
+                if (implementer.Id == order.ImplementerId)
+                {
+                    implementerFIO = implementer.ImplementerFIO;
+                }
+            }
             return new OrderViewModel
             {
                 Id = order.Id,
@@ -138,6 +150,8 @@ namespace FoodDeliveryListImplement.Implements
                 Sum = order.Sum,
                 DateCreate = order.DateCreate,
                 Status = order.Status,
+                ImplementerId = order.ImplementerId,
+                ImplementerFIO = implementerFIO,
                 DateImplement = order.DateImplement
             };
         }
