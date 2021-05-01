@@ -1,8 +1,10 @@
 ﻿using FoodDeliveryBusinnesLogic.BindingModels;
+using FoodDeliveryBusinnesLogic.Enums;
 using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,32 +41,47 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         private async void WorkerWorkAsync(ImplementerViewModel implementer, List<OrderViewModel> orders)
         {
             // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
-            var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel { ImplementerId = implementer.Id }));
+            var runOrders = await Task.Run(() => _orderLogic.Read(new OrderBindingModel
+            {
+                ImplementerId = implementer.Id
+            }));
             foreach (var order in runOrders)
             {
-                // делаем работу заново
-                Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
-                _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
-                // отдыхаем
-                Thread.Sleep(implementer.PauseTime);
+                ExecuteOrder(implementer, order);
             }
-            await Task.Run(() =>
+            var OrdersWithoutDishes = await Task.Run(() => _orderLogic.Read(null)
+                .Where(rec => rec.Status == OrderStatus.Требуются_материалы).ToList());
+
+            foreach (var order in OrdersWithoutDishes)
             {
-                foreach (var order in orders)
+                try
                 {
-                    // пытаемся назначить заказ на исполнителя
-                    try
-                    {
-                        _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
-                        // делаем работу
-                        Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
-                        _orderLogic.FinishOrder(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
-                        // отдыхаем
-                        Thread.Sleep(implementer.PauseTime);
-                    }
-                    catch (Exception) { }
+                    _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
+                    ExecuteOrder(implementer, order);
                 }
+                catch (Exception) { }
+            }
+            foreach (var order in orders)
+            {
+                try
+                {
+                    _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
+                    ExecuteOrder(implementer, order);
+                }
+                catch (Exception) { }
+            }
+        }
+        private void ExecuteOrder(ImplementerViewModel implementer, OrderViewModel order)
+        {
+            // делаем
+            Thread.Sleep(implementer.WorkingTime * rnd.Next(1, 5) * order.Count);
+            _orderLogic.FinishOrder(new ChangeStatusBindingModel
+            {
+                OrderId = order.Id,
+                ImplementerId = implementer.Id
             });
+            // отдыхаем
+            Thread.Sleep(implementer.PauseTime);
         }
     }
 }

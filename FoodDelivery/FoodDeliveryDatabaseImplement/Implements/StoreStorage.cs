@@ -224,7 +224,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                     catch (Exception)
                     {
                         transaction.Rollback();
-                        throw;
+                        return false;
                     }
                 }
             }

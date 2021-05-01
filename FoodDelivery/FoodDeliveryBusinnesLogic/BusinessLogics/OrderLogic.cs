@@ -53,17 +53,23 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                 {
                     throw new Exception("Не найден заказ");
                 }
-                if (order.Status != OrderStatus.Принят)
+                if (order.Status != OrderStatus.Принят && order.Status != OrderStatus.Требуются_материалы)
                 {
-                    throw new Exception("Заказ не в статусе \"Принят\"");
+                    throw new Exception("Заказ не в статусе \"Принят\" или \"Требуются материалы\"");
+                }
+                if (order.ImplementerId.HasValue && order.ImplementerId != model.ImplementerId)
+                {
+                    throw new Exception("У заказа уже есть исполнитель");
                 }
                 if (!_storeStorage.CheckAvailabilityAndWriteOff(order.SetId, order.Count))
                 {
-                    throw new Exception("Недостаточно блюд");
+                    order.Status = OrderStatus.Требуются_материалы;
                 }
-                if (order.ImplementerId.HasValue)
+                else
                 {
-                    throw new Exception("У заказа уже есть исполнитель");
+                    order.Status = OrderStatus.Выполняется;
+                    order.DateImplement = DateTime.Now;
+                    order.ImplementerId = model.ImplementerId;
                 }
                 _orderStorage.Update(new OrderBindingModel
                 {
@@ -73,9 +79,9 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                     Count = order.Count,
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
-                    DateImplement = DateTime.Now,
-                    ImplementerId = model.ImplementerId,
-                    Status = OrderStatus.Выполняется
+                    DateImplement = order.DateImplement,
+                    ImplementerId = order.ImplementerId,
+                    Status = order.Status
                 });
             }
         }
