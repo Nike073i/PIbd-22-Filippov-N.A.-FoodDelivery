@@ -10,11 +10,8 @@ namespace FoodDeliveryView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-
         public int Id { set { id = value; } }
-
         private readonly ImplementerLogic logic;
-
         private int? id;
 
         public FormImplementer(ImplementerLogic logic)

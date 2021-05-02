@@ -109,7 +109,7 @@ namespace FoodDeliveryListImplement.Implements
             order.Sum = model.Sum;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
-            order.ImplementerId = model.ClientId.GetValueOrDefault();
+            order.ImplementerId = model.ImplementerId;
             order.DateImplement = model.DateImplement;
             return order;
         }
