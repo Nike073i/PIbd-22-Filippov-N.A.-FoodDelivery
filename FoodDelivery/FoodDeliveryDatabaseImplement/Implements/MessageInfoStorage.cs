@@ -35,10 +35,8 @@ namespace FoodDeliveryDatabaseImplement.Implements
             using (var context = new FoodDeliveryDatabase())
             {
                 return context.MessageInfoes
-                .Where(rec => (model.ClientId.HasValue && rec.ClientId ==
-               model.ClientId) ||
-                (!model.ClientId.HasValue && rec.DateDelivery.Date ==
-               model.DateDelivery.Date))
+                .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) 
+                || (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
                 .Select(rec => new MessageInfoViewModel
                 {
                     MessageId = rec.MessageId,
@@ -54,16 +52,16 @@ namespace FoodDeliveryDatabaseImplement.Implements
         {
             using (var context = new FoodDeliveryDatabase())
             {
-                MessageInfo element = context.MessageInfoes.FirstOrDefault(rec =>
-               rec.MessageId == model.MessageId);
+                MessageInfo element = context.MessageInfoes.FirstOrDefault(rec => rec.MessageId == model.MessageId);
                 if (element != null)
                 {
                     throw new Exception("Уже есть письмо с таким идентификатором");
                 }
+                int? clientId = context.Clients.FirstOrDefault(rec => rec.Email == model.FromMailAddress)?.Id;
                 context.MessageInfoes.Add(new MessageInfo
                 {
                     MessageId = model.MessageId,
-                    ClientId = model.ClientId,
+                    ClientId = clientId,
                     SenderName = model.FromMailAddress,
                     DateDelivery = model.DateDelivery,
                     Subject = model.Subject,
