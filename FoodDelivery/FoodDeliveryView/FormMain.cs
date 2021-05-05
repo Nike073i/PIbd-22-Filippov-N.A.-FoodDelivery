@@ -12,12 +12,14 @@ namespace FoodDeliveryView
         public new IUnityContainer Container { get; set; }
         private readonly OrderLogic _orderLogic;
         private readonly ReportLogic _reportLogic;
+        private readonly WorkModeling _workModeling;
 
-        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic)
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic, WorkModeling workModeling)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
             this._reportLogic = reportLogic;
+            this._workModeling = workModeling;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -36,7 +38,8 @@ namespace FoodDeliveryView
                     dataGridViewOrders.Columns[0].Visible = false;
                     dataGridViewOrders.Columns[1].Visible = false;
                     dataGridViewOrders.Columns[3].Visible = false;
-                    dataGridViewOrders.Columns[9].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridViewOrders.Columns[9].Visible = false;
+                    dataGridViewOrders.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
@@ -151,6 +154,18 @@ namespace FoodDeliveryView
         {
             var form = Container.Resolve<FormClients>();
             form.ShowDialog();
+        }
+
+        private void implementersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormImplementers>();
+            form.ShowDialog();
+        }
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _workModeling.DoWork();
+            LoadData();
         }
     }
 }

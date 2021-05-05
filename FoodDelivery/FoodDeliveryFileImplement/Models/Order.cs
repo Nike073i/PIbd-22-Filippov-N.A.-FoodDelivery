@@ -12,6 +12,7 @@ namespace FoodDeliveryFileImplement.Models
         public decimal Sum { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime DateCreate { get; set; }
+        public int? ImplementerId { get; set; }
         public DateTime? DateImplement { get; set; }
     }
 }

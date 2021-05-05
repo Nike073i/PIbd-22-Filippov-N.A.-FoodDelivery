@@ -22,8 +22,10 @@ namespace FoodDeliveryDatabaseImplement.Models
         [Required]
         public DateTime DateCreate { get; set; }
         public DateTime? DateImplement { get; set; }
+        public int? ImplementerId { get; set; }
 
         public virtual Set Set { get; set; }
         public virtual Client Client { get; set; }
+        public virtual Implementer Implementer { get; set; }
     }
 }
