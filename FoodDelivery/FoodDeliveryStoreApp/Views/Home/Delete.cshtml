@@ -1,0 +1,22 @@
+﻿@model FoodDeliveryBusinnesLogic.ViewModels.StoreViewModel
+@{
+    ViewData["Title"] = "Удалить склад";
+}
+<div class="text-center">
+    <h2 class="display-4">Удаление склада</h2>
+</div>
+<form method="post" asp-action="DeleteAction">
+    <input type="hidden" name="store" value="@Model.Id" />
+    <div class="row">
+        <div class="col-4">Название:</div>
+        <div class="col-4">@Html.DisplayFor(model => model.StoreName)</div>
+    </div>
+    <div class="row">
+        <div class="col-4">Ответственный:</div>
+        <div class="col-8"> @Html.DisplayFor(model => model.FullNameResponsible)</div>
+    </div>
+    <div class="row">
+        <div class="col-8"></div>
+        <div class="col-4"><input type="submit" value="Удалить" class="btn btnprimary" /></div>
+    </div>
+</form>

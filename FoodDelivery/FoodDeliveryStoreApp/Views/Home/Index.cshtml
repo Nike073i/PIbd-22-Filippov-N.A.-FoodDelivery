@@ -1,0 +1,66 @@
+﻿@using FoodDeliveryBusinnesLogic.ViewModels
+@model List<StoreViewModel>
+@{
+    ViewData["Title"] = "Домашняя страница";
+}
+<div class="text-center">
+    <h1 class="display-4">Склады</h1>
+</div>
+<div class="text-center">
+    @{
+        if (Model == null)
+        {
+            <h3 class="display-4">Авторизируйтесь</h3>
+            return;
+        }
+        <p>
+            <a asp-action="Create">Создать склад</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Номер
+                    </th>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Ответственный
+                    </th>
+                    <th>
+                        Дата создания
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.StoreName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.FullNameResponsible)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem =>
+                            item.CreationDate)
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id">Обновить</a>
+                            или
+                            <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+

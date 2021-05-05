@@ -48,6 +48,7 @@ namespace FoodDeliveryView
             this.buttonOrderReady = new System.Windows.Forms.Button();
             this.buttonPayOrder = new System.Windows.Forms.Button();
             this.buttonRef = new System.Windows.Forms.Button();
+            this.клиентыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripFoodDelivery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrders)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +70,8 @@ namespace FoodDeliveryView
             this.directoriesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dishesToolStripMenuItem,
             this.setsToolStripMenuItem,
-            this.storesToolStripMenuItem});
+            this.storesToolStripMenuItem,
+            this.клиентыToolStripMenuItem});
             this.directoriesToolStripMenuItem.Name = "directoriesToolStripMenuItem";
             this.directoriesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.directoriesToolStripMenuItem.Text = "Справочники";
@@ -77,14 +79,14 @@ namespace FoodDeliveryView
             // dishesToolStripMenuItem
             // 
             this.dishesToolStripMenuItem.Name = "dishesToolStripMenuItem";
-            this.dishesToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.dishesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dishesToolStripMenuItem.Text = "Блюда";
             this.dishesToolStripMenuItem.Click += new System.EventHandler(this.DishesToolStripMenuItem_Click);
             // 
             // setsToolStripMenuItem
             // 
             this.setsToolStripMenuItem.Name = "setsToolStripMenuItem";
-            this.setsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.setsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.setsToolStripMenuItem.Text = "Наборы";
             this.setsToolStripMenuItem.Click += new System.EventHandler(this.SetsToolStripMenuItem_Click);
             // 
@@ -217,6 +219,13 @@ namespace FoodDeliveryView
             this.buttonRef.UseVisualStyleBackColor = true;
             this.buttonRef.Click += new System.EventHandler(this.ButtonRef_Click);
             // 
+            // клиентыToolStripMenuItem
+            // 
+            this.клиентыToolStripMenuItem.Name = "клиентыToolStripMenuItem";
+            this.клиентыToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.клиентыToolStripMenuItem.Text = "Клиенты";
+            this.клиентыToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,5 +271,6 @@ namespace FoodDeliveryView
         private System.Windows.Forms.ToolStripMenuItem списокСкладовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem загруженностьСкладовToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem отчетПоЗаказамПоДатамToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem клиентыToolStripMenuItem;
     }
 }

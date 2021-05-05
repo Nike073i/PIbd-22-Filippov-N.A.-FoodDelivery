@@ -17,9 +17,12 @@ namespace FoodDeliveryDatabaseImplement.Implements
             {
                 return context.Orders
                 .Include(rec => rec.Set)
+                .Include(rec => rec.Client)
                 .Select(rec => new OrderViewModel
                 {
                     Id = rec.Id,
+                    ClientId = rec.ClientId,
+                    ClientFIO = rec.Client.ClientFIO,
                     SetId = rec.SetId,
                     SetName = rec.Set.SetName,
                     Count = rec.Count,
@@ -40,12 +43,16 @@ namespace FoodDeliveryDatabaseImplement.Implements
             {
                 return context.Orders
                     .Include(rec => rec.Set)
+                    .Include(rec => rec.Client)
                     .Where(rec => rec.SetId.Equals(model.SetId)
                     || (!model.DateFrom.HasValue && !model.DateTo.HasValue && rec.DateCreate.Date == model.DateCreate.Date)
-                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date))
+                    || (model.DateFrom.HasValue && model.DateTo.HasValue && rec.DateCreate.Date >= model.DateFrom.Value.Date && rec.DateCreate.Date <= model.DateTo.Value.Date)
+                    || (model.ClientId.HasValue && rec.ClientId == model.ClientId))
                     .Select(rec => new OrderViewModel
                     {
                         Id = rec.Id,
+                        ClientId = rec.ClientId,
+                        ClientFIO = rec.Client.ClientFIO,
                         SetId = rec.SetId,
                         SetName = rec.Set.SetName,
                         Count = rec.Count,
@@ -66,11 +73,14 @@ namespace FoodDeliveryDatabaseImplement.Implements
             {
                 var order = context.Orders
                     .Include(rec => rec.Set)
+                    .Include(rec => rec.Client)
                     .FirstOrDefault(rec => rec.Id == model.Id);
                 return order != null ?
                 new OrderViewModel
                 {
                     Id = order.Id,
+                    ClientId = order.ClientId,
+                    ClientFIO = order.Client.ClientFIO,
                     SetId = order.SetId,
                     SetName = order.Set.SetName,
                     Count = order.Count,
@@ -120,6 +130,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
         }
         private Order CreateModel(OrderBindingModel model, Order order)
         {
+            order.ClientId = (int)model.ClientId;
             order.SetId = model.SetId;
             order.Count = model.Count;
             order.Sum = model.Sum;

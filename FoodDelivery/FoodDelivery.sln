@@ -11,7 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryListImplement",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryFileImplement", "FoodDeliveryFileImplement\FoodDeliveryFileImplement.csproj", "{D813AC3C-0A70-43A5-9243-E81D67E5A8EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDeliveryDatabaseImplement", "FoodDeliveryDatabaseImplement\FoodDeliveryDatabaseImplement.csproj", "{3498FDB6-1D11-4AFF-A732-E485E9C35224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryDatabaseImplement", "FoodDeliveryDatabaseImplement\FoodDeliveryDatabaseImplement.csproj", "{3498FDB6-1D11-4AFF-A732-E485E9C35224}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryRestApi", "FoodDeliveryRestApi\FoodDeliveryRestApi.csproj", "{ECD1EA8A-54EE-4B9A-9BB2-617012926A97}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodDeliveryClientApp", "FoodDeliveryClientApp\FoodDeliveryClientApp.csproj", "{AA885DD1-4D68-4FC8-B2EE-BE0A99815333}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodDeliveryStoreApp", "FoodDeliveryStoreApp\FoodDeliveryStoreApp.csproj", "{4C1DCDDC-5093-45CF-A246-CBF43C480638}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{3498FDB6-1D11-4AFF-A732-E485E9C35224}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3498FDB6-1D11-4AFF-A732-E485E9C35224}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3498FDB6-1D11-4AFF-A732-E485E9C35224}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD1EA8A-54EE-4B9A-9BB2-617012926A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD1EA8A-54EE-4B9A-9BB2-617012926A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD1EA8A-54EE-4B9A-9BB2-617012926A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD1EA8A-54EE-4B9A-9BB2-617012926A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA885DD1-4D68-4FC8-B2EE-BE0A99815333}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA885DD1-4D68-4FC8-B2EE-BE0A99815333}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA885DD1-4D68-4FC8-B2EE-BE0A99815333}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA885DD1-4D68-4FC8-B2EE-BE0A99815333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C1DCDDC-5093-45CF-A246-CBF43C480638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C1DCDDC-5093-45CF-A246-CBF43C480638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C1DCDDC-5093-45CF-A246-CBF43C480638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C1DCDDC-5093-45CF-A246-CBF43C480638}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,12 +13,14 @@ namespace FoodDeliveryView
         public new IUnityContainer Container { get; set; }
         private readonly SetLogic _logicS;
         private readonly OrderLogic _logicO;
+        private readonly ClientLogic _logicC;
 
-        public FormCreateOrder(SetLogic logicS, OrderLogic logicO)
+        public FormCreateOrder(SetLogic logicS, OrderLogic logicO, ClientLogic logicC)
         {
             InitializeComponent();
             _logicS = logicS;
             _logicO = logicO;
+            _logicC = logicC;
         }
 
         private void FormCreateOrder_Load(object sender, EventArgs e)
@@ -32,6 +34,14 @@ namespace FoodDeliveryView
                     comboBoxSet.DisplayMember = "SetName";
                     comboBoxSet.ValueMember = "Id";
                     comboBoxSet.SelectedItem = null;
+                }
+                var clients = _logicC.Read(null);
+                if (clients != null)
+                {
+                    comboBoxClient.DataSource = clients;
+                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.ValueMember = "Id";
+                    comboBoxClient.SelectedItem = null;
                 }
             }
             catch (Exception ex)
@@ -83,10 +93,16 @@ namespace FoodDeliveryView
                 MessageBox.Show("Выберите набор", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxClient.SelectedValue == null)
+            {
+                MessageBox.Show("Выберите клиента", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 _logicO.CreateOrder(new CreateOrderBindingModel
                 {
+                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     SetId = Convert.ToInt32(comboBoxSet.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToDecimal(textBoxSum.Text)
