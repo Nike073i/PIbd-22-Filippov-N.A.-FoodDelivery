@@ -1,4 +1,5 @@
 using FoodDeliveryBusinnesLogic.BusinessLogics;
+using FoodDeliveryBusinnesLogic.HelperModels;
 using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryDatabaseImplement.Implements;
 using Microsoft.AspNetCore.Builder;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace FoodDeliveryRestApi
 {
@@ -30,6 +32,13 @@ namespace FoodDeliveryRestApi
             services.AddTransient<SetLogic>();
             services.AddTransient<MailLogic>();
             services.AddControllers().AddNewtonsoftJson();
+            MailLogic.MailConfig(new MailConfig
+            {
+                SmtpClientHost = Configuration["SmtpClientHost"],
+                SmtpClientPort = Convert.ToInt32(Configuration["SmtpClientPort"]),
+                MailLogin = Configuration["MailLogin"],
+                MailPassword = Configuration["MailPassword"],
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
