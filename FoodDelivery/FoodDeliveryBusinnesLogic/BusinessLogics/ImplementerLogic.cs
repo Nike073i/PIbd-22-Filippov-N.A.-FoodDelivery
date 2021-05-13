@@ -30,6 +30,14 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
 
         public void CreateOrUpdate(ImplementerBindingModel model)
         {
+            var implementer = _implementerStorage.GetElement(new ImplementerBindingModel
+            {
+                ImplementerFIO = model.ImplementerFIO
+            });
+            if (implementer != null && implementer.Id != model.Id)
+            {
+                throw new Exception("Уже есть исполнитель с таким ФИО");
+            }
             if (model.Id.HasValue)
             {
                 _implementerStorage.Update(model);

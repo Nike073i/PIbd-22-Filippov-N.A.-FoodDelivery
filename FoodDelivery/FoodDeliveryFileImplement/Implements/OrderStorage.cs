@@ -75,7 +75,7 @@ namespace FoodDeliveryFileImplement.Implements
             order.Sum = model.Sum;
             order.Status = model.Status;
             order.DateCreate = model.DateCreate;
-            order.ImplementerId = model.ImplementerId.GetValueOrDefault();
+            order.ImplementerId = model.ImplementerId;
             order.DateImplement = model.DateImplement;
             return order;
         }

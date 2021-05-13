@@ -13,11 +13,8 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
     public class WorkModeling
     {
         private readonly IImplementerStorage _implementerStorage;
-
         private readonly IOrderStorage _orderStorage;
-
         private readonly OrderLogic _orderLogic;
-
         private readonly Random rnd;
 
         public WorkModeling(IImplementerStorage implementerStorage, IOrderStorage orderStorage, OrderLogic orderLogic)
@@ -41,7 +38,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
         private async void WorkerWorkAsync(ImplementerViewModel implementer, List<OrderViewModel> orders)
         {
             // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
-            var runOrders = await Task.Run(() => _orderLogic.Read(new OrderBindingModel
+            var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel
             {
                 ImplementerId = implementer.Id
             }));
