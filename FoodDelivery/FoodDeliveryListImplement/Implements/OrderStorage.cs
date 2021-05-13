@@ -1,5 +1,4 @@
 ﻿using FoodDeliveryBusinnesLogic.BindingModels;
-using FoodDeliveryBusinnesLogic.Enums;
 using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using FoodDeliveryListImplement.Models;
@@ -39,7 +38,7 @@ namespace FoodDeliveryListImplement.Implements
                     || (model.DateFrom.HasValue && model.DateTo.HasValue && order.DateCreate.Date >= model.DateFrom.Value.Date && order.DateCreate.Date <= model.DateTo.Value.Date)
                     || (model.ClientId.HasValue && order.ClientId == model.ClientId)
                     || (model.FreeOrders.HasValue && model.FreeOrders.Value && !order.ImplementerId.HasValue)
-                    || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == OrderStatus.Выполняется))
+                    || (model.ImplementerId.HasValue && order.ImplementerId == model.ImplementerId && order.Status == model.Status))
                 {
                     result.Add(CreateModel(order));
                 }

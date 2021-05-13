@@ -4,7 +4,6 @@ using FoodDeliveryBusinnesLogic.Interfaces;
 using FoodDeliveryBusinnesLogic.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -40,20 +39,28 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
             // ищем заказы, которые уже в работе (вдруг исполнителя прервали)
             var runOrders = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel
             {
-                ImplementerId = implementer.Id
+                ImplementerId = implementer.Id,
+                Status = OrderStatus.Выполняется
             }));
             foreach (var order in runOrders)
             {
                 ExecuteOrder(implementer, order);
             }
-            var OrdersWithoutDishes = await Task.Run(() => _orderLogic.Read(null)
-                .Where(rec => rec.Status == OrderStatus.Требуются_материалы).ToList());
+            var OrdersWithoutDishes = await Task.Run(() => _orderStorage.GetFilteredList(new OrderBindingModel
+            {
+                ImplementerId = implementer.Id,
+                Status = OrderStatus.Требуются_материалы
+            }));
 
             foreach (var order in OrdersWithoutDishes)
             {
                 try
                 {
                     _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
+                    if (_orderStorage.GetElement(new OrderBindingModel { Id = order.Id }).Status == OrderStatus.Требуются_материалы)
+                    {
+                        continue;
+                    }
                     ExecuteOrder(implementer, order);
                 }
                 catch (Exception) { }
@@ -63,6 +70,10 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                 try
                 {
                     _orderLogic.TakeOrderInWork(new ChangeStatusBindingModel { OrderId = order.Id, ImplementerId = implementer.Id });
+                    if (_orderStorage.GetElement(new OrderBindingModel { Id = order.Id }).Status == OrderStatus.Требуются_материалы)
+                    {
+                        continue;
+                    }
                     ExecuteOrder(implementer, order);
                 }
                 catch (Exception) { }
