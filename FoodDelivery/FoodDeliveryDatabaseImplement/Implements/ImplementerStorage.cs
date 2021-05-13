@@ -5,7 +5,6 @@ using FoodDeliveryDatabaseImplement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FoodDeliveryDatabaseImplement.Implements
 {
@@ -56,7 +55,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
             using (var context = new FoodDeliveryDatabase())
             {
                 var implementer = context.Implementers
-                .FirstOrDefault(rec => rec.Id == model.Id);
+                .FirstOrDefault(rec => rec.ImplementerFIO == model.ImplementerFIO || rec.Id == model.Id);
                 return implementer != null ?
                 new ImplementerViewModel
                 {
@@ -64,8 +63,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
                     ImplementerFIO = implementer.ImplementerFIO,
                     WorkingTime = implementer.WorkingTime,
                     PauseTime = implementer.PauseTime
-                } :
-                null;
+                } : null;
             }
         }
 

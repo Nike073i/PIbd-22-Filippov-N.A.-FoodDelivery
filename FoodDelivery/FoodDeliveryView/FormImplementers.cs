@@ -10,7 +10,6 @@ namespace FoodDeliveryView
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-
         private readonly ImplementerLogic logic;
 
         public FormImplementers(ImplementerLogic logic)
@@ -33,8 +32,7 @@ namespace FoodDeliveryView
                 {
                     dataGridViewImplementers.DataSource = list;
                     dataGridViewImplementers.Columns[0].Visible = false;
-                    dataGridViewImplementers.Columns[3].AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.Fill;
+                    dataGridViewImplementers.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
             }
             catch (Exception ex)
