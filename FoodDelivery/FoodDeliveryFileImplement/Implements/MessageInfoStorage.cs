@@ -28,10 +28,8 @@ namespace FoodDeliveryFileImplement.Implements
                 return null;
             }
             return source.MessageInfoes
-                .Where(rec => (model.ClientId.HasValue && rec.ClientId ==
-               model.ClientId) ||
-                (!model.ClientId.HasValue && rec.DateDelivery.Date ==
-               model.DateDelivery.Date))
+                .Where(rec => (model.ClientId.HasValue && rec.ClientId == model.ClientId) ||
+                (!model.ClientId.HasValue && rec.DateDelivery.Date == model.DateDelivery.Date))
                 .Select(CreateModel).ToList();
         }
         public void Insert(MessageInfoBindingModel model)
@@ -41,17 +39,15 @@ namespace FoodDeliveryFileImplement.Implements
             {
                 throw new Exception("Уже есть письмо с таким идентификатором");
             }
-            source.MessageInfoes.Add(CreateModel(model, messageInfo));
-        }
-        private MessageInfo CreateModel(MessageInfoBindingModel model, MessageInfo messageInfo)
-        {
-            messageInfo.MessageId = model.MessageId;
-            messageInfo.ClientId = model.ClientId;
-            messageInfo.SenderName = model.FromMailAddress;
-            messageInfo.DateDelivery = model.DateDelivery;
-            messageInfo.Subject = model.Subject;
-            messageInfo.Body = model.Body;
-            return messageInfo;
+            source.MessageInfoes.Add(new MessageInfo
+            {
+                MessageId = model.MessageId,
+                ClientId = model.ClientId,
+                SenderName = model.FromMailAddress,
+                DateDelivery = model.DateDelivery,
+                Subject = model.Subject,
+                Body = model.Body
+            });
         }
 
         private MessageInfoViewModel CreateModel(MessageInfo messageInfo)

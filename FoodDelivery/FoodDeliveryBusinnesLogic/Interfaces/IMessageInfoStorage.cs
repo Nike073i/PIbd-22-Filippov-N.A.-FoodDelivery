@@ -2,7 +2,6 @@
 using FoodDeliveryBusinnesLogic.ViewModels;
 using System.Collections.Generic;
 
-
 namespace FoodDeliveryBusinnesLogic.Interfaces
 {
     public interface IMessageInfoStorage

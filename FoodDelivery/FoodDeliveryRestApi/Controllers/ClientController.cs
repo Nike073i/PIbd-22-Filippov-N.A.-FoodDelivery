@@ -50,13 +50,13 @@ namespace FoodDeliveryRestApi.Controllers
         }
         private void CheckData(ClientBindingModel model)
         {
-            if (!Regex.IsMatch(model.Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            if (!Regex.IsMatch(model.Email, @"^[A-Za-z0-9]+(?:[._%+-])?[A-Za-z0-9._-]+[A-Za-z0-9]@[A-Za-z0-9]+(?:[.-])?[A-Za-z0-9._-]+\.[A-Za-z]{2,6}$"))
             {
                 throw new Exception("В качестве логина почта указана должна быть");
             }
-            if (model.Password.Length > _passwordMaxLength || model.Password.Length <
-           _passwordMinLength || !Regex.IsMatch(model.Password,
-           @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
+            if (model.Password.Length > _passwordMaxLength
+                || model.Password.Length < _passwordMinLength
+                || !Regex.IsMatch(model.Password, @"^((\w+\d+\W+)|(\w+\W+\d+)|(\d+\w+\W+)|(\d+\W+\w+)|(\W+\w+\d+)|(\W+\d+\w+))[\w\d\W]*$"))
             {
                 throw new Exception($"Пароль длиной от {_passwordMinLength} до { _passwordMaxLength } должен быть и из цифр, букв и небуквенных символов должен состоять");
             }

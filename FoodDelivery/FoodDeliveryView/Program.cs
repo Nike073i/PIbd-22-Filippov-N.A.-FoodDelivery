@@ -27,13 +27,13 @@ namespace FoodDeliveryView
                 MailLogin = ConfigurationManager.AppSettings["MailLogin"],
                 MailPassword = ConfigurationManager.AppSettings["MailPassword"],
             });
-            // создаем таймер
-            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new
-           MailCheckInfo
+
+            var timer = new System.Threading.Timer(new TimerCallback(MailCheck), new MailCheckInfo
             {
                 PopHost = ConfigurationManager.AppSettings["PopHost"],
                 PopPort = Convert.ToInt32(ConfigurationManager.AppSettings["PopPort"]),
-                MessageInfoStorage = container.Resolve<IMessageInfoStorage>()
+                MessageInfoStorage = container.Resolve<IMessageInfoStorage>(),
+                ClientStorage = container.Resolve<IClientStorage>()
             }, 0, 100000);
 
             Application.EnableVisualStyles();

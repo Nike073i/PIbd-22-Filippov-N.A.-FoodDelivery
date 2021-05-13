@@ -50,16 +50,15 @@ namespace FoodDeliveryListImplement.Implements
                     throw new Exception("Уже есть письмо с таким идентификатором");
                 }
             }
-            source.MessageInfoes.Add(CreateModel(model, tempMessageInfo));
-        }
-        private MessageInfo CreateModel(MessageInfoBindingModel model, MessageInfo messageInfo)
-        {
-            messageInfo.ClientId = model.ClientId;
-            messageInfo.SenderName = model.FromMailAddress;
-            messageInfo.DateDelivery = model.DateDelivery;
-            messageInfo.Subject = model.Subject;
-            messageInfo.Body = model.Body;
-            return messageInfo;
+            source.MessageInfoes.Add(new MessageInfo
+            {
+                MessageId = model.MessageId,
+                ClientId = model.ClientId,
+                SenderName = model.FromMailAddress,
+                DateDelivery = model.DateDelivery,
+                Subject = model.Subject,
+                Body = model.Body
+            });
         }
 
         private MessageInfoViewModel CreateModel(MessageInfo messageInfo)

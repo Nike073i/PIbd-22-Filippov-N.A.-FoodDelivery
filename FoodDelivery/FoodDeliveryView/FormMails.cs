@@ -1,11 +1,14 @@
 ﻿using FoodDeliveryBusinnesLogic.BusinessLogics;
 using System;
 using System.Windows.Forms;
+using Unity;
 
 namespace FoodDeliveryView
 {
     public partial class FormMails : Form
     {
+        [Dependency]
+        public new IUnityContainer Container { get; set; }
         private readonly MailLogic logic;
 
         public FormMails(MailLogic mailLogic)
