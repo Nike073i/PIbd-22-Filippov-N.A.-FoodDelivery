@@ -69,7 +69,6 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                 {
                     order.Status = OrderStatus.Выполняется;
                     order.DateImplement = DateTime.Now;
-                    order.ImplementerId = model.ImplementerId;
                 }
                 _orderStorage.Update(new OrderBindingModel
                 {
@@ -80,7 +79,7 @@ namespace FoodDeliveryBusinnesLogic.BusinessLogics
                     Sum = order.Sum,
                     DateCreate = order.DateCreate,
                     DateImplement = order.DateImplement,
-                    ImplementerId = order.ImplementerId,
+                    ImplementerId = model.ImplementerId,
                     Status = order.Status
                 });
             }
