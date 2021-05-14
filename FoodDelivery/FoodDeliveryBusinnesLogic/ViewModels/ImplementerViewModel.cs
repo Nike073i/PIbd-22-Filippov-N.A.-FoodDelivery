@@ -1,15 +1,16 @@
-﻿using System.ComponentModel;
+﻿using FoodDeliveryBusinnesLogic.Attributes;
 
 namespace FoodDeliveryBusinnesLogic.ViewModels
 {
     public class ImplementerViewModel
     {
+        [Column(title: "Номер", width: 50)]
         public int Id { get; set; }
-        [DisplayName("ФИО исполнителя")]
+        [Column(title: "ФИО исполнителя", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ImplementerFIO { get; set; }
-        [DisplayName("Время на заказ")]
+        [Column(title: "Время на заказ", width: 80)]
         public int WorkingTime { get; set; }
-        [DisplayName("Время на перерыв")]
+        [Column(title: "Время на перерыв", width: 80)]
         public int PauseTime { get; set; }
     }
 }

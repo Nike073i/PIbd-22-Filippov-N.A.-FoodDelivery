@@ -21,21 +21,17 @@ namespace FoodDeliveryView
         {
             LoadData();
         }
+
         private void LoadData()
         {
             try
             {
-                var list = logic.Read(null);
-                if (list != null)
-                {
-                    dataGridViewClients.DataSource = list;
-                    dataGridViewClients.Columns[0].Visible = false;
-                    dataGridViewClients.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(logic.Read(null), dataGridViewClients);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
             }
         }
 

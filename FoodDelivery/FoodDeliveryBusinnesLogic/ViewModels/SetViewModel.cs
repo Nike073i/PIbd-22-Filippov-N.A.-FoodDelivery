@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using FoodDeliveryBusinnesLogic.Attributes;
+using System.Collections.Generic;
 using System.Runtime.Serialization;
 
 namespace FoodDeliveryBusinnesLogic.ViewModels
@@ -8,14 +8,15 @@ namespace FoodDeliveryBusinnesLogic.ViewModels
     public class SetViewModel
     {
         [DataMember]
-        public int? Id { get; set; }
+        [Column(title: "Номер", width: 50)]
+        public int Id { get; set; }
 
         [DataMember]
-        [DisplayName("Название набора")]
+        [Column(title: "Название набора", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string SetName { get; set; }
 
         [DataMember]
-        [DisplayName("Цена")]
+        [Column(title: "Цена", width: 75)]
         public decimal Price { get; set; }
 
         [DataMember]

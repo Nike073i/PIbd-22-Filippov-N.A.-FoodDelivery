@@ -13,13 +13,15 @@ namespace FoodDeliveryView
         private readonly OrderLogic _orderLogic;
         private readonly ReportLogic _reportLogic;
         private readonly WorkModeling _workModeling;
+        private readonly BackUpAbstractLogic _backUpAbstractLogic;
 
-        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic, WorkModeling workModeling)
+        public FormMain(OrderLogic orderLogic, ReportLogic reportLogic, WorkModeling workModeling, BackUpAbstractLogic _backUpAbstractLogic)
         {
             InitializeComponent();
             this._orderLogic = orderLogic;
             this._reportLogic = reportLogic;
             this._workModeling = workModeling;
+            this._backUpAbstractLogic = _backUpAbstractLogic;
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -31,20 +33,12 @@ namespace FoodDeliveryView
         {
             try
             {
-                var list = _orderLogic.Read(null);
-                if (list != null)
-                {
-                    dataGridViewOrders.DataSource = list;
-                    dataGridViewOrders.Columns[0].Visible = false;
-                    dataGridViewOrders.Columns[1].Visible = false;
-                    dataGridViewOrders.Columns[3].Visible = false;
-                    dataGridViewOrders.Columns[9].Visible = false;
-                    dataGridViewOrders.Columns[11].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                }
+                Program.ConfigGrid(_orderLogic.Read(null), dataGridViewOrders);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
             }
         }
 
@@ -172,6 +166,29 @@ namespace FoodDeliveryView
         {
             var form = Container.Resolve<FormMails>();
             form.ShowDialog();
+        }
+
+        private void создатьБэкапToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_backUpAbstractLogic != null)
+                {
+                    var fbd = new FolderBrowserDialog();
+                    if (fbd.ShowDialog() == DialogResult.OK)
+                    {
+                        _backUpAbstractLogic.CreateArchive(fbd.SelectedPath);
+                        MessageBox.Show("Бекап создан", "Сообщение",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using FoodDeliveryBusinnesLogic.Attributes;
 using System.Runtime.Serialization;
 
 namespace FoodDeliveryBusinnesLogic.ViewModels
@@ -6,19 +6,20 @@ namespace FoodDeliveryBusinnesLogic.ViewModels
     [DataContract]
     public class ClientViewModel
     {
+        [Column(title: "Номер", width: 50)]
         [DataMember]
         public int Id { get; set; }
 
         [DataMember]
-        [DisplayName("ФИО")]
+        [Column(title: "ФИО клиента", gridViewAutoSize: GridViewAutoSize.Fill)]
         public string ClientFIO { get; set; }
 
         [DataMember]
-        [DisplayName("Логин")]
+        [Column(title: "Почта", width: 100)]
         public string Email { get; set; }
 
         [DataMember]
-        [DisplayName("Пароль")]
+        [Column(title: "Пароль", width: 100)]
         public string Password { get; set; }
     }
 }
