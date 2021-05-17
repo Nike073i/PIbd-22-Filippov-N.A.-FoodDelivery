@@ -11,6 +11,7 @@ namespace FoodDeliveryListImplement
         public List<Set> Sets { get; set; }
         public List<Client> Clients { get; set; }
         public List<Implementer> Implementers { get; set; }
+        public List<MessageInfo> MessageInfoes { get; set; }
 
         private DataListSingleton()
         {
@@ -19,6 +20,7 @@ namespace FoodDeliveryListImplement
             Sets = new List<Set>();
             Clients = new List<Client>();
             Implementers = new List<Implementer>();
+            MessageInfoes = new List<MessageInfo>();
         }
 
         public static DataListSingleton GetInstance()
