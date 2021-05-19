@@ -19,11 +19,6 @@ namespace FoodDeliveryView
 
         private void FormMails_Load(object sender, EventArgs e)
         {
-            LoadData();
-        }
-
-        private void LoadData()
-        {
             try
             {
                 Program.ConfigGrid(logic.Read(null), dataGridViewMails);

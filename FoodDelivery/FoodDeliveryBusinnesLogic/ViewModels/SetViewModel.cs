@@ -8,7 +8,7 @@ namespace FoodDeliveryBusinnesLogic.ViewModels
     public class SetViewModel
     {
         [DataMember]
-        [Column(title: "Номер", width: 50)]
+        [Column(title: "Номер", width: 100, visible: false)]
         public int Id { get; set; }
 
         [DataMember]
@@ -16,7 +16,7 @@ namespace FoodDeliveryBusinnesLogic.ViewModels
         public string SetName { get; set; }
 
         [DataMember]
-        [Column(title: "Цена", width: 75)]
+        [Column(title: "Цена", width: 100)]
         public decimal Price { get; set; }
 
         [DataMember]

@@ -18,7 +18,7 @@ namespace FoodDeliveryDatabaseImplement.Implements
             {
                 Type type = context.GetType();
                 return type.GetProperties().Where(x =>
-               x.PropertyType.FullName.StartsWith("Microsoft.EntityFrameworkCore.DbSet")).ToList();
+                x.PropertyType.FullName.StartsWith("Microsoft.EntityFrameworkCore.DbSet")).ToList();
             }
         }
         protected override List<T> GetList<T>()
